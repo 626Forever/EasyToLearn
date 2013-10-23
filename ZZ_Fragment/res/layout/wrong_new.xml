@@ -1,0 +1,174 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/wrong_new_head"
+        android:layout_width="fill_parent"
+        android:layout_height="55sp"
+        android:background="@drawable/bg_header_image"
+        android:orientation="horizontal"
+        android:paddingBottom="0sp"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingTop="0sp" >
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/header_action_back"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingLeft="10sp"
+            android:text="返回" >
+        </Button>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="新建错题"
+            android:textAppearance="@style/header_title" >
+        </TextView>
+
+        <Button
+            android:id="@+id/btnOperate"
+            style="@style/header_action_additional"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:text="返回" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/wrong_new_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="标题。。。"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="感悟"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/wrong_new_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:freezesText="true"
+            android:gravity="left"
+            android:hint="写点什么吧。。。"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+jindian/textView2"
+                android:layout_width="280dip"
+                android:layout_height="230dip"
+                android:layout_gravity="center_horizontal"
+                android:background="#DEDEDE"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_style"
+                android:minHeight="30dp"
+                android:text="添加错题" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="280dip"
+                android:layout_height="230dip"
+                android:layout_gravity="center_horizontal"
+                android:background="#DEDEDE"
+                android:scaleType="fitXY" />
+
+            <Button
+                style="@drawable/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_style"
+                android:minHeight="30dp"
+                android:text="添加答案" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/wrong_new_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_style"
+            android:text="取消" />
+
+        <Button
+            android:id="@+id/wrong_new_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/wrong_new_cancel"
+            android:background="@drawable/button_style"
+            android:text="保存" />
+    </RelativeLayout>
+
+</LinearLayout>

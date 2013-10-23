@@ -20,8 +20,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.memo.NewActivity;
-import app.main.ui.memo.BrowseActivity;
+import app.main.ui.memo.MemoNewActivity;
+import app.main.ui.memo.MemoBrowseActivity;
+import app.main.ui.wrong.WrongNewActivity;
+import app.main.ui.wrong.WrongBrowseActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
@@ -57,7 +59,7 @@ public class RightFragment extends Fragment {
 					openLearn(subs[arg2]);
 					break;
 				case 1:
-					openWrong();
+					openWrong(subs[arg2]);
 					break;
 				case 2:
 					openClass();
@@ -113,7 +115,7 @@ public class RightFragment extends Fragment {
 			builder.setTitle("提示");
 			builder.setPositiveButton("确认", new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = new Intent(getActivity(), NewActivity.class);
+					Intent intent = new Intent(getActivity(), MemoNewActivity.class);
 					Bundle bundle = new Bundle();
 					bundle.putString("root", root);
 					bundle.putString("sub", sub);
@@ -137,7 +139,7 @@ public class RightFragment extends Fragment {
 			String name = fileModule.getSubFolder().get(0);
 			String data = fileModule.readText(name);
 
-			Intent intent = new Intent(getActivity(), BrowseActivity.class);
+			Intent intent = new Intent(getActivity(), MemoBrowseActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("name", StringUtility.getFileName(name));
 			bundle.putString("data", data);
@@ -147,7 +149,54 @@ public class RightFragment extends Fragment {
 
 	}
 
-	private void openWrong() {
+	private void openWrong(final String detail) {
+		if (root.equals("")) {
+			Toast.makeText(parent, "您还没有选择学科", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		if (sub.equals("")) {
+			Toast.makeText(parent, "您还没有选择知识条目", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		FileUtility fileModule = MainActivity.fileModule;
+		fileModule.reset();
+		fileModule.createDirectory(root);
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(detail);
+		ArrayList<String> dirs = fileModule.getSubFolder();
+
+		if (dirs.size() == 0) {
+			AlertDialog.Builder builder = new Builder(parent);
+			builder.setMessage("亲，添加错题吧");
+			builder.setTitle("提示");
+			builder.setPositiveButton("确认", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(getActivity(), WrongNewActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putString("root", root);
+					bundle.putString("sub", sub);
+					bundle.putString("detail", detail);
+					intent.putExtras(bundle);
+					parent.startActivity(intent);
+					dialog.dismiss();
+				}
+			});
+			builder.setNegativeButton("取消", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			});
+			builder.create().show();
+		} else {
+			Intent intent = new Intent(getActivity(), WrongBrowseActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("root", root);
+			bundle.putString("sub", sub);
+			bundle.putString("detail", detail);
+			intent.putExtras(bundle);
+			parent.startActivity(intent);
+		}
 
 	}
 

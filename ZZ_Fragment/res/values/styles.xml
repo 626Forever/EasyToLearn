@@ -5,23 +5,31 @@
         <!-- API 14 theme customizations can go here. -->
     </style>
 
-    <style name="content_text">
-        <item name="android:textSize">@dimen/content</item>
-        <item name="android:textColor">@color/content</item>
+    <style name="panel_background">
+        <item name="android:background">@drawable/shape_panel_background</item>
     </style>
 
-    <style name="list_footer_text">
-        <item name="android:textSize">@dimen/list_footer_text</item>
-        <item name="android:textColor">@color/content</item>
+    <style name="header_action_back">
+        <item name="android:textSize">@dimen/header_action</item>
+        <item name="android:textColor">@color/selector_btn_header_action</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@drawable/selector_btn_action_back</item>
+    </style>
+
+    <style name="header_title">
+        <item name="android:textSize">@dimen/header_title</item>
+        <item name="android:textColor">@color/selector_header_title</item>
         <item name="android:textStyle">normal</item>
         <item name="android:typeface">sans</item>
     </style>
 
-    <style name="list_user_profile_name">
-        <item name="android:textSize">@dimen/list_user_profile_name</item>
-        <item name="android:textColor">@color/content</item>
+    <style name="header_action_additional">
+        <item name="android:textSize">@dimen/header_action</item>
+        <item name="android:textColor">@color/selector_btn_header_action</item>
         <item name="android:textStyle">normal</item>
         <item name="android:typeface">sans</item>
+        <item name="android:background">@drawable/selector_btn_action_additional</item>
     </style>
 
 </resources>

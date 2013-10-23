@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import app.main.R;
 
-public class BrowseActivity extends Activity {
+public class MemoBrowseActivity extends Activity {
 	private TextView title_browse;
 	private TextView content_browse;
 	private String name;

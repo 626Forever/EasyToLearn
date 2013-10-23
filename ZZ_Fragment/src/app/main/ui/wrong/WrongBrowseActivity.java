@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import app.main.R;
 
-public class WrongActivity extends Activity {
+public class WrongBrowseActivity extends Activity {
 	ListView wrong_list;
 	List<Map<String, Object>> list_data;
 

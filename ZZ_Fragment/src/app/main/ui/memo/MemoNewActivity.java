@@ -20,7 +20,7 @@ import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
-public class NewActivity extends Activity {
+public class MemoNewActivity extends Activity {
 	private EditText edit_title;
 	private EditText edit_content;
 	private TextView text_tiem;
@@ -69,9 +69,9 @@ public class NewActivity extends Activity {
 					fileModule.createDirectory(detail);
 					String data = edit_content.getText().toString();
 					if (fileModule.saveText(data, title)) {
-						Toast.makeText(NewActivity.this, "吼吼，保存成功",
+						Toast.makeText(MemoNewActivity.this, "吼吼，保存成功",
 								Toast.LENGTH_SHORT).show();
-						NewActivity.this.finish();
+						MemoNewActivity.this.finish();
 					}
 
 				}
@@ -83,7 +83,7 @@ public class NewActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				NewActivity.this.finish();
+				MemoNewActivity.this.finish();
 			}
 		});
 	}

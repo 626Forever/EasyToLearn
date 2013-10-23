@@ -23,11 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.main.ui.memo.NewActivity" >
+        <activity android:name="app.main.ui.memo.MemoNewActivity" >
         </activity>
-        <activity android:name="app.main.ui.memo.BrowseActivity" >
+        <activity android:name="app.main.ui.memo.MemoBrowseActivity" >
         </activity>
-        <activity android:name="app.main.ui.wrong.WrongActivity" >
+        <activity android:name="app.main.ui.wrong.WrongBrowseActivity" >
+        </activity>
+        <activity android:name="app.main.ui.wrong.WrongNewActivity" >
         </activity>
     </application>
 

@@ -55,7 +55,7 @@
             android:gravity="left"
             android:hint="内容。。。"
             android:inputType="textMultiLine"
-            android:lines="3" />
+            android:lines="10" />
     </LinearLayout>
 
     <RelativeLayout
