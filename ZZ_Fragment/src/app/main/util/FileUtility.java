@@ -278,12 +278,11 @@ public class FileUtility {
 	 * @return -true照片存储成功 -false照片存储失败
 	 */
 	@SuppressWarnings("static-access")
-	public boolean savePhoto(Bitmap bitmap) {
+	public boolean savePhoto(Bitmap bitmap, String name) {
 		/**
 		 * 根据当前系统时间生成照片名称
 		 */
-		String picture_name = new DateFormat().format("yyyyMMdd_hhmmss",
-				Calendar.getInstance(Locale.CHINA)) + ".jpg";
+		String picture_name = name + ".jpg";
 
 		// createDirectory(photoDirectory);// 创建存储目录
 		File file = createFileFromName(picture_name);// 创建照片文件

@@ -74,6 +74,9 @@ public class MemoNewActivity extends Activity {
 						MemoNewActivity.this.finish();
 					}
 
+				} else {
+					Toast.makeText(MemoNewActivity.this, "亲，标题不能为空或只打空格哦",
+							Toast.LENGTH_LONG).show();
 				}
 
 			}
