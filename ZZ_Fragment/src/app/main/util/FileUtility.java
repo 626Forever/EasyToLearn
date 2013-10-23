@@ -187,8 +187,7 @@ public class FileUtility {
 		File files[] = file.listFiles();
 		for (int i = 0; i < files.length; i++) {
 			File f = files[i];
-			String[] dirs = f.getPath().split(File.separator);
-			ml.add(dirs[dirs.length - 1]);
+			ml.add(f.getName());
 		}
 		return ml;
 	}

@@ -21,8 +21,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
 import app.main.ui.memo.NewActivity;
-import app.main.ui.memo.SeeActivity;
+import app.main.ui.memo.BrowseActivity;
 import app.main.util.FileUtility;
+import app.main.util.StringUtility;
 
 public class RightFragment extends Fragment {
 	private MainActivity parent;
@@ -136,9 +137,9 @@ public class RightFragment extends Fragment {
 			String name = fileModule.getSubFolder().get(0);
 			String data = fileModule.readText(name);
 
-			Intent intent = new Intent(getActivity(), SeeActivity.class);
+			Intent intent = new Intent(getActivity(), BrowseActivity.class);
 			Bundle bundle = new Bundle();
-			bundle.putString("name", name);
+			bundle.putString("name", StringUtility.getFileName(name));
 			bundle.putString("data", data);
 			intent.putExtras(bundle);
 			parent.startActivity(intent);

@@ -32,7 +32,9 @@
             android:id="@+id/memo_browse_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="标题。。。" />
+            android:hint="标题。。。"
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,9 +54,8 @@
             android:layout_height="wrap_content"
             android:freezesText="true"
             android:gravity="left"
-            android:hint="内容。。。"
-            android:inputType="textMultiLine"
-            android:lines="3" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <RelativeLayout

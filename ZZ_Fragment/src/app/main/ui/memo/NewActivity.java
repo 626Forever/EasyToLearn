@@ -18,7 +18,7 @@ import android.widget.Toast;
 import app.main.R;
 import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
-import app.main.util.StringCheck;
+import app.main.util.StringUtility;
 
 public class NewActivity extends Activity {
 	private EditText edit_title;
@@ -61,7 +61,7 @@ public class NewActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String title = edit_title.getText().toString();
-				if (StringCheck.legalInput(title)) {
+				if (StringUtility.legalInput(title)) {
 					FileUtility fileModule = MainActivity.fileModule;
 					fileModule.reset();
 					fileModule.createDirectory(root);
