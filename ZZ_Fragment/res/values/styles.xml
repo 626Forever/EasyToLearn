@@ -32,4 +32,11 @@
         <item name="android:background">@drawable/selector_btn_action_additional</item>
     </style>
 
+    <style name="list_account_screen_name">
+        <item name="android:textSize">@dimen/list_account_screen_name</item>
+        <item name="android:textColor">@color/content</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
 </resources>

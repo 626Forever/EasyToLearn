@@ -5,58 +5,39 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:background="#fff"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/wrong_item_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="诚信是微信失控商业化模式的保证书"
-            android:textColor="#000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+        android:background="@drawable/bg_frame_normal"
+        android:padding="1sp" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:background="#fff"
-            android:orientation="horizontal" >
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/selector_frame_item_all_corner"
+            android:orientation="horizontal"
+            android:padding="8sp" >
 
             <ImageView
                 android:id="@+id/wrong_item_icon"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
-                android:background="#000"
-                android:scaleType="fitXY"
-                android:src="@drawable/bannian" />
-
-            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_weight="0.6"
-                android:orientation="vertical" >
+                android:paddingRight="8sp"
+                android:src="@drawable/icon_more_groups" />
 
-                <TextView
-                    android:id="@+id/wrong_item_contect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    android:text="@string/test"
-                    android:textColor="#000" />
+            <TextView
+                android:id="@+id/wrong_item_title"
+                style="@style/list_account_screen_name"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/lib_mini_book" />
-            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_more_detail" />
         </LinearLayout>
     </LinearLayout>
 

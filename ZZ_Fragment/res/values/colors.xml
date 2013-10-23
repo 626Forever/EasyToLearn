@@ -13,5 +13,12 @@
     <color name="header_action">#ffffff</color>
     <color name="header_action_disabled">#80ffffff</color>
     <color name="background">#f0f4f7</color>
+    <color name="content">#000000</color>
+
+    <!-- 框选项背景 -->
+    <color name="frame_item_normal">#FFF</color>
+    <color name="frame_item_focused">#dadee6</color>
+    <color name="frame_item_pressed">#dadee6</color>
+    <color name="frame_item_disabled">#FFF</color>
 
 </resources>

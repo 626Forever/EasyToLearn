@@ -23,7 +23,7 @@ import app.main.R;
 import app.main.ui.memo.MemoNewActivity;
 import app.main.ui.memo.MemoBrowseActivity;
 import app.main.ui.wrong.WrongNewActivity;
-import app.main.ui.wrong.WrongBrowseActivity;
+import app.main.ui.wrong.WrongListActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
@@ -189,7 +189,7 @@ public class RightFragment extends Fragment {
 			});
 			builder.create().show();
 		} else {
-			Intent intent = new Intent(getActivity(), WrongBrowseActivity.class);
+			Intent intent = new Intent(getActivity(), WrongListActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("root", root);
 			bundle.putString("sub", sub);
