@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, FragmentActivity!</string>
+    <string name="app_name">Fragment</string>
+    <string name="title1">物理力学实验</string>
+    <string name="title2">物理力学实验</string>
+    <string name="title3">物理力学实验</string>
+    <string name="title4">物理力学实验</string>
+    <string name="title5">物理力学实验</string>
+    <string name="title6">物理力学实验</string>
+    <string name="title7">物理力学实验</string>
+    <string name="test">物理实验要求严谨，需要细心仔细</string>
+    <string name="left">科 目</string>
+    <string name="right">笔 记</string>
+
+</resources>
