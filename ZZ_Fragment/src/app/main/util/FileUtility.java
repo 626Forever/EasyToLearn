@@ -286,16 +286,13 @@ public class FileUtility {
 		 */
 		String picture_name = name + ".jpg";
 
-		// createDirectory(photoDirectory);// 创建存储目录
 		File file = createFileFromName(picture_name);// 创建照片文件
-
-		System.out.println(file.getAbsolutePath());
 
 		BufferedOutputStream bos = null;
 		try {
 			bos = new BufferedOutputStream(new FileOutputStream(file));
 			/** 将照片数据输入至输出流中，输出到文件中 */
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			return false;
@@ -421,7 +418,7 @@ public class FileUtility {
 
 	public Bitmap readBitmap(String fileName) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inPreferredConfig = Bitmap.Config.RGB_565;
+		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 		Bitmap bitmap = BitmapFactory.decodeFile(previousPath + fileName,
 				options);
 		return bitmap;

@@ -102,6 +102,7 @@ public class WrongBrowseActivity extends Activity {
 				String fName = StringUtility.getFileName(fileName);
 				if (fName.equals(WrongNewActivity.MIS_BITMAP_NAME)) {
 					misBmp = fileModule.readBitmap(fileName);
+					System.out.println(misBmp.getWidth() +"   "+misBmp.getHeight());
 				}
 				if (fName.equals(WrongNewActivity.ANS_BITMAP_NAME)) {
 					ansBmp = fileModule.readBitmap(fileName);

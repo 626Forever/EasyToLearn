@@ -83,11 +83,10 @@
 
             <ImageView
                 android:id="@+id/wrong_browse_mis_img"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:paddingLeft="18sp"
-                android:paddingRight="18sp" />
+                android:scaleType="center" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -107,11 +106,10 @@
 
             <ImageView
                 android:id="@+id/wrong_browse_ans_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="600dip"
                 android:layout_centerInParent="true"
-                android:paddingLeft="18sp"
-                android:paddingRight="18sp" />
+                android:scaleType="center" />
         </RelativeLayout>
 
         <LinearLayout

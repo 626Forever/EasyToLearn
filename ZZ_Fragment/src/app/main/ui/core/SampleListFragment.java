@@ -31,6 +31,9 @@ public class SampleListFragment extends ListFragment {
 	private String rootDir = "";
 	private ArrayList<Map<String, Object>> data;
 
+	public SampleListFragment() {
+	}
+
 	public SampleListFragment(MainActivity parent) {
 		this.parent = parent;
 	}

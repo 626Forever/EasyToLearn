@@ -1,8 +1,14 @@
 package app.main.ui.wrong;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -13,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import app.main.R;
 import app.main.ui.core.MainActivity;
-import app.main.ui.memo.MemoNewActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
@@ -27,7 +32,7 @@ public class WrongNewActivity extends Activity {
 	private String root;
 	private String sub;
 	private String detail;
-	
+
 	private Button backBtn;
 	private Button saveBtn;
 	private Button misBtn;
@@ -36,8 +41,11 @@ public class WrongNewActivity extends Activity {
 	private EditText contentEdit;
 	private ImageView misImage;
 	private ImageView ansImage;
+
 	private Bitmap misBitmap = null;
 	private Bitmap ansBitmap = null;
+
+	private File temp;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -128,15 +136,26 @@ public class WrongNewActivity extends Activity {
 		switch (requestCode) {
 		case RESULT_CAPTURE_MIS_IMAGE:
 			if (resultCode == RESULT_OK) {
-				Bundle bundle = data.getExtras();
-				misBitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+
+				try {
+					FileInputStream fis = new FileInputStream(temp);
+					misBitmap = BitmapFactory.decodeStream(fis);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+
 				misImage.setImageBitmap(misBitmap);
 			}
 			break;
 		case RESULT_CAPTURE_ANS_IMAGE:
 			if (resultCode == RESULT_OK) {
-				Bundle bundle = data.getExtras();
-				ansBitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+				try {
+					FileInputStream fis = new FileInputStream(temp);
+					ansBitmap = BitmapFactory.decodeStream(fis);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+
 				ansImage.setImageBitmap(ansBitmap);
 			}
 			break;
@@ -145,7 +164,15 @@ public class WrongNewActivity extends Activity {
 	}
 
 	private void requestCamera(int requestCode) {
+		FileUtility fileModule = MainActivity.fileModule;
+		fileModule.reset();
+		fileModule.createDirectory(root);
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(detail);
+		fileModule.createDirectory(title);
+		temp = fileModule.createFileFromName("temp");
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 		startActivityForResult(intent, requestCode);
 	}
 }
