@@ -115,7 +115,8 @@ public class RightFragment extends Fragment {
 			builder.setTitle("提示");
 			builder.setPositiveButton("确认", new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = new Intent(getActivity(), MemoNewActivity.class);
+					Intent intent = new Intent(getActivity(),
+							MemoNewActivity.class);
 					Bundle bundle = new Bundle();
 					bundle.putString("root", root);
 					bundle.putString("sub", sub);
@@ -141,8 +142,11 @@ public class RightFragment extends Fragment {
 
 			Intent intent = new Intent(getActivity(), MemoBrowseActivity.class);
 			Bundle bundle = new Bundle();
+			bundle.putString("root", root);
+			bundle.putString("sub", sub);
+			bundle.putString("detail", detail);
 			bundle.putString("name", StringUtility.getFileName(name));
-			bundle.putString("data", data);
+			bundle.putString("content", data);
 			intent.putExtras(bundle);
 			parent.startActivity(intent);
 		}
@@ -172,7 +176,8 @@ public class RightFragment extends Fragment {
 			builder.setTitle("提示");
 			builder.setPositiveButton("确认", new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = new Intent(getActivity(), WrongNewActivity.class);
+					Intent intent = new Intent(getActivity(),
+							WrongNewActivity.class);
 					Bundle bundle = new Bundle();
 					bundle.putString("root", root);
 					bundle.putString("sub", sub);

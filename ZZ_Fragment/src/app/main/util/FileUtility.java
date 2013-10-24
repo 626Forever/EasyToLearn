@@ -171,8 +171,8 @@ public class FileUtility {
 	 * @param path
 	 *            ÎÄ¼þÂ·¾¶
 	 */
-	public void deleteFile(String path) {
-		File file = new File(path);
+	public void deleteFile(String name) {
+		File file = new File(previousPath + name);
 		if (!file.exists()) {
 			return;
 		} else {
