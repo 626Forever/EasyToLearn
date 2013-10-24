@@ -3,6 +3,7 @@ package app.main.ui.wrong;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -50,6 +51,7 @@ public class WrongNewActivity extends Activity {
 	private Bitmap misBmp = null;
 	private Bitmap ansBmp = null;
 
+	private FileUtility fileModule;
 	private File temp;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class WrongNewActivity extends Activity {
 		contentEdit = (EditText) findViewById(R.id.wrong_new_content);
 		misImage = (ImageView) findViewById(R.id.wrong_new_capture_mis_img);
 		ansImage = (ImageView) findViewById(R.id.wrong_new_capture_ans_img);
+		fileModule = new FileUtility();
 		getDirsAndBmps();
 		setListener();
 		notifyWidgets();
@@ -93,9 +96,24 @@ public class WrongNewActivity extends Activity {
 			detail = bundle.getString("detail");
 			title = bundle.getString("title");
 			content = bundle.getString("content");
-			misBmp = intent.getParcelableExtra("misBmp");
-			ansBmp = intent.getParcelableExtra("ansBmp");
+			FileUtility fileModule = MainActivity.fileModule;
+			fileModule.reset();
+			fileModule.createDirectory(root);
+			fileModule.createDirectory(sub);
+			fileModule.createDirectory(detail);
+			fileModule.createDirectory(title);
+			ArrayList<String> dirs = fileModule.getSubFolder();
+			for (int i = 0; i < dirs.size(); i++) {
+				String fileName = dirs.get(i);
+				String fName = StringUtility.getFileName(fileName);
+				if (fName.equals(MIS_BITMAP_NAME)) {
+					misBmp = fileModule.readBitmap(fileName);
+				}
+				if (fName.equals(ANS_BITMAP_NAME)) {
+					ansBmp = fileModule.readBitmap(fileName);
+				}
 
+			}
 		}
 		if (call_code == WrongCallCode.LIST_CALL_NEW) {
 			root = bundle.getString("root");
@@ -200,7 +218,6 @@ public class WrongNewActivity extends Activity {
 	}
 
 	private void requestCamera(int requestCode) {
-		FileUtility fileModule = MainActivity.fileModule;
 		fileModule.reset();
 		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);

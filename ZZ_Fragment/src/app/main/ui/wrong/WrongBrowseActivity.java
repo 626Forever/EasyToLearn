@@ -123,6 +123,21 @@ public class WrongBrowseActivity extends Activity {
 		contentText.setText(content);
 	}
 
+	private void delete() {
+		FileUtility fileModule = MainActivity.fileModule;
+		fileModule.reset();
+		fileModule.createDirectory(root);
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(detail);
+		fileModule.createDirectory(name);
+		ArrayList<String> dirs = fileModule.getSubFolder();
+		for (int i = 0; i < dirs.size(); i++) {
+			fileModule.deleteFile(dirs.get(i));
+		}
+		fileModule.Rollback();
+		fileModule.deleteFile(name);
+	}
+
 	private void setListener() {
 		backBtn.setOnClickListener(new OnClickListener() {
 
@@ -147,10 +162,8 @@ public class WrongBrowseActivity extends Activity {
 				bundle.putString("title", title);
 				bundle.putString("content", content);
 				intent.putExtras(bundle);
-				intent.putExtra("misBmp", misBmp);
-				intent.putExtra("ansBmp", ansBmp);
 				WrongBrowseActivity.this.startActivity(intent);
-
+				WrongBrowseActivity.this.finish();
 			}
 		});
 		deleteBtn.setOnClickListener(new OnClickListener() {
@@ -167,19 +180,7 @@ public class WrongBrowseActivity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								// TODO Auto-generated method stub
-								FileUtility fileModule = MainActivity.fileModule;
-								fileModule.reset();
-								fileModule.createDirectory(root);
-								fileModule.createDirectory(sub);
-								fileModule.createDirectory(detail);
-								fileModule.createDirectory(name);
-								ArrayList<String> dirs = fileModule
-										.getSubFolder();
-								for (int i = 0; i < dirs.size(); i++) {
-									fileModule.deleteFile(dirs.get(i));
-								}
-								fileModule.Rollback();
-								fileModule.deleteFile(name);
+								delete();
 								Toast.makeText(WrongBrowseActivity.this,
 										"È«É¾¹âÁË", Toast.LENGTH_SHORT).show();
 								dialog.dismiss();
