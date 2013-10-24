@@ -27,6 +27,7 @@ public class WrongNewActivity extends Activity {
 	private static final int RESULT_CAPTURE_ANS_IMAGE = 2;// ’’œ‡µƒrequestCode
 	public static final String MIS_BITMAP_NAME = "misBtm";
 	public static final String ANS_BITMAP_NAME = "ansBtm";
+	private static final String TEMP_BITMAP_NAME = "temp";
 	private String title;
 	private String content;
 	private String root;
@@ -136,10 +137,10 @@ public class WrongNewActivity extends Activity {
 		switch (requestCode) {
 		case RESULT_CAPTURE_MIS_IMAGE:
 			if (resultCode == RESULT_OK) {
-
 				try {
 					FileInputStream fis = new FileInputStream(temp);
 					misBitmap = BitmapFactory.decodeStream(fis);
+					temp.delete();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -152,6 +153,7 @@ public class WrongNewActivity extends Activity {
 				try {
 					FileInputStream fis = new FileInputStream(temp);
 					ansBitmap = BitmapFactory.decodeStream(fis);
+					temp.delete();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -169,8 +171,7 @@ public class WrongNewActivity extends Activity {
 		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(detail);
-		fileModule.createDirectory(title);
-		temp = fileModule.createFileFromName("temp");
+		temp = fileModule.createFileFromName(TEMP_BITMAP_NAME);
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 		startActivityForResult(intent, requestCode);

@@ -292,7 +292,7 @@ public class FileUtility {
 		try {
 			bos = new BufferedOutputStream(new FileOutputStream(file));
 			/** 将照片数据输入至输出流中，输出到文件中 */
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			return false;
