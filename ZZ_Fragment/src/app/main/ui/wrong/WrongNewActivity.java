@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import app.main.R;
 import app.main.ui.core.MainActivity;
@@ -23,17 +24,20 @@ import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
 public class WrongNewActivity extends Activity {
-	private static final int RESULT_CAPTURE_MIS_IMAGE = 1;// 照相的requestCode
-	private static final int RESULT_CAPTURE_ANS_IMAGE = 2;// 照相的requestCode
+	private static final int RESULT_CAPTURE_MIS_IMAGE = 1;
+	private static final int RESULT_CAPTURE_ANS_IMAGE = 2;
+	private int call_code;
+
 	public static final String MIS_BITMAP_NAME = "misBtm";
 	public static final String ANS_BITMAP_NAME = "ansBtm";
 	private static final String TEMP_BITMAP_NAME = "temp";
-	private String title;
-	private String content;
+	private String title = "";
+	private String content = "";
 	private String root;
 	private String sub;
 	private String detail;
 
+	private TextView headText;
 	private Button backBtn;
 	private Button saveBtn;
 	private Button misBtn;
@@ -43,8 +47,8 @@ public class WrongNewActivity extends Activity {
 	private ImageView misImage;
 	private ImageView ansImage;
 
-	private Bitmap misBitmap = null;
-	private Bitmap ansBitmap = null;
+	private Bitmap misBmp = null;
+	private Bitmap ansBmp = null;
 
 	private File temp;
 
@@ -52,6 +56,7 @@ public class WrongNewActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wrong_new);
+		headText = (TextView) findViewById(R.id.wrong_new_head_title);
 		backBtn = (Button) findViewById(R.id.wrong_new_back);
 		saveBtn = (Button) findViewById(R.id.wrong_new_save);
 		misBtn = (Button) findViewById(R.id.wrong_new_capture_mis_btn);
@@ -60,15 +65,44 @@ public class WrongNewActivity extends Activity {
 		contentEdit = (EditText) findViewById(R.id.wrong_new_content);
 		misImage = (ImageView) findViewById(R.id.wrong_new_capture_mis_img);
 		ansImage = (ImageView) findViewById(R.id.wrong_new_capture_ans_img);
-		getFileDir();
+		getDirsAndBmps();
 		setListener();
+		notifyWidgets();
 	}
 
-	private void getFileDir() {
-		Bundle bundle = getIntent().getExtras();
-		root = bundle.getString("root");
-		sub = bundle.getString("sub");
-		detail = bundle.getString("detail");
+	private void notifyWidgets() {
+		if (call_code == WrongCallCode.BROWSE_CALL_NEW) {
+			headText.setText("修改错题");
+			titleEdit.setText(title);
+			contentEdit.setText(content);
+			misImage.setImageBitmap(misBmp);
+			ansImage.setImageBitmap(ansBmp);
+		}
+		if (call_code == WrongCallCode.LIST_CALL_NEW) {
+			headText.setText("新建错题");
+		}
+	}
+
+	private void getDirsAndBmps() {
+		Intent intent = getIntent();
+		Bundle bundle = intent.getExtras();
+		call_code = bundle.getInt("call_code");
+		if (call_code == WrongCallCode.BROWSE_CALL_NEW) {
+			root = bundle.getString("root");
+			sub = bundle.getString("sub");
+			detail = bundle.getString("detail");
+			title = bundle.getString("title");
+			content = bundle.getString("content");
+			misBmp = intent.getParcelableExtra("misBmp");
+			ansBmp = intent.getParcelableExtra("ansBmp");
+
+		}
+		if (call_code == WrongCallCode.LIST_CALL_NEW) {
+			root = bundle.getString("root");
+			sub = bundle.getString("sub");
+			detail = bundle.getString("detail");
+		}
+
 	}
 
 	private void setListener() {
@@ -85,7 +119,7 @@ public class WrongNewActivity extends Activity {
 				// TODO Auto-generated method stub
 				title = titleEdit.getText().toString();
 				content = contentEdit.getText().toString();
-				if (misBitmap == null || ansBitmap == null) {
+				if (misBmp == null || ansBmp == null) {
 					Toast.makeText(WrongNewActivity.this, "亲，你还没记录错题或答案呢",
 							Toast.LENGTH_LONG).show();
 					return;
@@ -99,8 +133,8 @@ public class WrongNewActivity extends Activity {
 					fileModule.createDirectory(detail);
 					fileModule.createDirectory(title);
 					if (fileModule.saveText(content, title)
-							&& fileModule.savePhoto(misBitmap, MIS_BITMAP_NAME)
-							&& fileModule.savePhoto(ansBitmap, ANS_BITMAP_NAME)) {
+							&& fileModule.savePhoto(misBmp, MIS_BITMAP_NAME)
+							&& fileModule.savePhoto(ansBmp, ANS_BITMAP_NAME)) {
 						Toast.makeText(WrongNewActivity.this, "吼吼，保存成功",
 								Toast.LENGTH_SHORT).show();
 						WrongNewActivity.this.finish();
@@ -139,26 +173,26 @@ public class WrongNewActivity extends Activity {
 			if (resultCode == RESULT_OK) {
 				try {
 					FileInputStream fis = new FileInputStream(temp);
-					misBitmap = BitmapFactory.decodeStream(fis);
+					misBmp = BitmapFactory.decodeStream(fis);
 					temp.delete();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 
-				misImage.setImageBitmap(misBitmap);
+				misImage.setImageBitmap(misBmp);
 			}
 			break;
 		case RESULT_CAPTURE_ANS_IMAGE:
 			if (resultCode == RESULT_OK) {
 				try {
 					FileInputStream fis = new FileInputStream(temp);
-					ansBitmap = BitmapFactory.decodeStream(fis);
+					ansBmp = BitmapFactory.decodeStream(fis);
 					temp.delete();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 
-				ansImage.setImageBitmap(ansBitmap);
+				ansImage.setImageBitmap(ansBmp);
 			}
 			break;
 

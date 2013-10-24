@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ import app.main.util.StringUtility;
 public class WrongBrowseActivity extends Activity {
 
 	private boolean modify = false;
+	private int call_code;
 	private String root;
 	private String sub;
 	private String detail;
@@ -79,10 +81,13 @@ public class WrongBrowseActivity extends Activity {
 
 	private void getFileDirs() {
 		Bundle bundle = getIntent().getExtras();
-		root = bundle.getString("root");
-		sub = bundle.getString("sub");
-		detail = bundle.getString("detail");
-		name = bundle.getString("name");
+		call_code = bundle.getInt("call_code");
+		if (call_code == WrongCallCode.LIST_CALL_BROWSE) {
+			root = bundle.getString("root");
+			sub = bundle.getString("sub");
+			detail = bundle.getString("detail");
+			name = bundle.getString("name");
+		}
 	}
 
 	private void getData() {
@@ -102,7 +107,6 @@ public class WrongBrowseActivity extends Activity {
 				String fName = StringUtility.getFileName(fileName);
 				if (fName.equals(WrongNewActivity.MIS_BITMAP_NAME)) {
 					misBmp = fileModule.readBitmap(fileName);
-					System.out.println(misBmp.getWidth() +"   "+misBmp.getHeight());
 				}
 				if (fName.equals(WrongNewActivity.ANS_BITMAP_NAME)) {
 					ansBmp = fileModule.readBitmap(fileName);
@@ -131,7 +135,22 @@ public class WrongBrowseActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				modiftBtnChangeState();
+
+				Intent intent = new Intent(WrongBrowseActivity.this,
+						WrongNewActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putInt("call_code", WrongCallCode.BROWSE_CALL_NEW);
+				bundle.putString("root", root);
+				bundle.putString("sub", sub);
+				bundle.putString("detail", detail);
+				bundle.putString("name", name);
+				bundle.putString("title", title);
+				bundle.putString("content", content);
+				intent.putExtras(bundle);
+				intent.putExtra("misBmp", misBmp);
+				intent.putExtra("ansBmp", ansBmp);
+				WrongBrowseActivity.this.startActivity(intent);
+
 			}
 		});
 		deleteBtn.setOnClickListener(new OnClickListener() {
@@ -209,14 +228,4 @@ public class WrongBrowseActivity extends Activity {
 		});
 	}
 
-	private void modiftBtnChangeState() {
-		if (!modify) {
-			modify = true;
-			modifyBtn.setText("±£´æ");
-
-		} else {
-			modify = false;
-			modifyBtn.setText("ÐÞ¸Ä");
-		}
-	}
 }

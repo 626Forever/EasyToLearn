@@ -79,6 +79,7 @@ public class WrongListActivity extends Activity {
 				Intent intent = new Intent(WrongListActivity.this,
 						WrongNewActivity.class);
 				Bundle bundle = new Bundle();
+				bundle.putInt("call_code", WrongCallCode.LIST_CALL_NEW);
 				bundle.putString("root", root);
 				bundle.putString("sub", sub);
 				bundle.putString("detail", detail);
@@ -97,6 +98,7 @@ public class WrongListActivity extends Activity {
 				Intent intent = new Intent(WrongListActivity.this,
 						WrongBrowseActivity.class);
 				Bundle bundle = new Bundle();
+				bundle.putInt("call_code", WrongCallCode.LIST_CALL_BROWSE);
 				bundle.putString("root", root);
 				bundle.putString("sub", sub);
 				bundle.putString("detail", detail);
