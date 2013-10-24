@@ -20,6 +20,7 @@ import app.main.util.FileUtility;
 
 public class WrongListActivity extends Activity {
 	private final static int ADD_NEW_ITEM = 0;
+	private final static int BROWSE_ITEM = 1;
 	private Button backBtn;
 	private Button addBtn;
 	private ListView wrongList;
@@ -48,10 +49,15 @@ public class WrongListActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == ADD_NEW_ITEM) {
+		switch (requestCode) {
+		case ADD_NEW_ITEM:
 			this.getList();
-
+			break;
+		case BROWSE_ITEM:
+			this.getList();
+			break;
 		}
+
 	}
 
 	private void setListener() {
@@ -86,9 +92,19 @@ public class WrongListActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
+				String name = (String) listData.get(arg2).get(
+						"wrong_item_title");
 				Intent intent = new Intent(WrongListActivity.this,
 						WrongBrowseActivity.class);
-				WrongListActivity.this.startActivity(intent);
+				Bundle bundle = new Bundle();
+				bundle.putString("root", root);
+				bundle.putString("sub", sub);
+				bundle.putString("detail", detail);
+				bundle.putString("name", name);
+				intent.putExtras(bundle);
+				WrongListActivity.this.startActivityForResult(intent,
+						BROWSE_ITEM);
+
 			}
 		});
 	}

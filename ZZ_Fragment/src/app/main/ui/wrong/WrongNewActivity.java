@@ -20,6 +20,14 @@ import app.main.util.StringUtility;
 public class WrongNewActivity extends Activity {
 	private static final int RESULT_CAPTURE_MIS_IMAGE = 1;// 照相的requestCode
 	private static final int RESULT_CAPTURE_ANS_IMAGE = 2;// 照相的requestCode
+	public static final String MIS_BITMAP_NAME = "misBtm";
+	public static final String ANS_BITMAP_NAME = "ansBtm";
+	private String title;
+	private String content;
+	private String root;
+	private String sub;
+	private String detail;
+	
 	private Button backBtn;
 	private Button saveBtn;
 	private Button misBtn;
@@ -30,11 +38,6 @@ public class WrongNewActivity extends Activity {
 	private ImageView ansImage;
 	private Bitmap misBitmap = null;
 	private Bitmap ansBitmap = null;
-	private String title;
-	private String content;
-	private String root;
-	private String sub;
-	private String detail;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -87,8 +90,8 @@ public class WrongNewActivity extends Activity {
 					fileModule.createDirectory(detail);
 					fileModule.createDirectory(title);
 					if (fileModule.saveText(content, title)
-							&& fileModule.savePhoto(misBitmap, "misBtm")
-							&& fileModule.savePhoto(ansBitmap, "ansBtm")) {
+							&& fileModule.savePhoto(misBitmap, MIS_BITMAP_NAME)
+							&& fileModule.savePhoto(ansBitmap, ANS_BITMAP_NAME)) {
 						Toast.makeText(WrongNewActivity.this, "吼吼，保存成功",
 								Toast.LENGTH_SHORT).show();
 						WrongNewActivity.this.finish();

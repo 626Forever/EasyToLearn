@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -417,18 +419,12 @@ public class FileUtility {
 		return data;
 	}
 
-	/**
-	 * 检测手机平板SDCard是否可用
-	 * 
-	 * @return -true SDCard可用 -false SDCard不可用
-	 */
-	public boolean isSDCardUseful() {
-		String sdStatus = Environment.getExternalStorageState();
-		if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
-			return false;
-		} else {
-			return true;
-		}
+	public Bitmap readBitmap(String fileName) {
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inPreferredConfig = Bitmap.Config.RGB_565;
+		Bitmap bitmap = BitmapFactory.decodeFile(previousPath + fileName,
+				options);
+		return bitmap;
 	}
 
 	public ArrayList<String> getImageList(String dir) {
@@ -444,16 +440,6 @@ public class FileUtility {
 		return ml;
 	}
 
-	public boolean isImageFile(String name) {
-		boolean b = false;
-		String end = name.substring(name.lastIndexOf(".") + 1, name.length())
-				.toLowerCase();
-		if (end.equals("jpg") || end.equals("png") || end.equals("gif")
-				|| end.equals("jpeg") || end.equals("bmp"))
-			b = true;
-		return b;
-	}
-
 	public ArrayList<String> getAudioList(String dir) {
 		ArrayList<String> ml = new ArrayList<String>();
 		ml.clear();
@@ -467,6 +453,30 @@ public class FileUtility {
 		return ml;
 	}
 
+	/**
+	 * 检测手机平板SDCard是否可用
+	 * 
+	 * @return -true SDCard可用 -false SDCard不可用
+	 */
+	public boolean isSDCardUseful() {
+		String sdStatus = Environment.getExternalStorageState();
+		if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public boolean isImageFile(String name) {
+		boolean b = false;
+		String end = name.substring(name.lastIndexOf(".") + 1, name.length())
+				.toLowerCase();
+		if (end.equals("jpg") || end.equals("png") || end.equals("gif")
+				|| end.equals("jpeg") || end.equals("bmp"))
+			b = true;
+		return b;
+	}
+
 	public boolean isAudioFile(String name) {
 		boolean b = false;
 		String end = name.substring(name.lastIndexOf(".") + 1, name.length())
@@ -477,4 +487,12 @@ public class FileUtility {
 		return b;
 	}
 
+	public boolean isTextFile(String name) {
+		boolean b = false;
+		String end = name.substring(name.lastIndexOf(".") + 1, name.length())
+				.toLowerCase();
+		if (end.equals("txt"))
+			b = true;
+		return b;
+	}
 }
