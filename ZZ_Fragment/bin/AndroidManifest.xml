@@ -31,6 +31,8 @@
         </activity>
         <activity android:name="app.main.ui.wrong.WrongNewActivity" >
         </activity>
+        <activity android:name="app.main.ui.wrong.WrongBrowseActivity" >
+        </activity>
     </application>
 
 </manifest>

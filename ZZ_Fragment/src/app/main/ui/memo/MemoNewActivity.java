@@ -21,12 +21,12 @@ import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
 public class MemoNewActivity extends Activity {
-	private EditText edit_title;
-	private EditText edit_content;
-	private TextView text_tiem;
-	private Button save_btn;
-	private Button cancel_btn;
-	private String set_date = "";
+	private EditText editTitle;
+	private EditText editContent;
+	private TextView textTiem;
+	private Button saveBtn;
+	private Button backBtn;
+	private String setDate = "";
 	private String root;
 	private String sub;
 	private String detail;
@@ -36,11 +36,11 @@ public class MemoNewActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.memo_new);
-		edit_title = (EditText) findViewById(R.id.memo_new_title);
-		edit_content = (EditText) findViewById(R.id.memo_new_content);
-		text_tiem = (TextView) findViewById(R.id.memo_new_title_tiem);
-		save_btn = (Button) findViewById(R.id.memo_new_save);
-		cancel_btn = (Button) findViewById(R.id.memo_new_cancel);
+		editTitle = (EditText) findViewById(R.id.memo_new_title);
+		editContent = (EditText) findViewById(R.id.memo_new_content);
+		textTiem = (TextView) findViewById(R.id.memo_new_title_tiem);
+		saveBtn = (Button) findViewById(R.id.memo_new_save);
+		backBtn = (Button) findViewById(R.id.memo_new_back);
 
 		getDirs();
 		setTime();
@@ -56,18 +56,18 @@ public class MemoNewActivity extends Activity {
 
 	private void setListener() {
 		// TODO Auto-generated method stub
-		save_btn.setOnClickListener(new OnClickListener() {
+		saveBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String title = edit_title.getText().toString();
+				String title = editTitle.getText().toString();
 				if (StringUtility.legalInput(title)) {
 					FileUtility fileModule = MainActivity.fileModule;
 					fileModule.reset();
 					fileModule.createDirectory(root);
 					fileModule.createDirectory(sub);
 					fileModule.createDirectory(detail);
-					String data = edit_content.getText().toString();
+					String data = editContent.getText().toString();
 					if (fileModule.saveText(data, title)) {
 						Toast.makeText(MemoNewActivity.this, "吼吼，保存成功",
 								Toast.LENGTH_SHORT).show();
@@ -82,7 +82,7 @@ public class MemoNewActivity extends Activity {
 			}
 		});
 
-		cancel_btn.setOnClickListener(new OnClickListener() {
+		backBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -98,8 +98,8 @@ public class MemoNewActivity extends Activity {
 		ca = Calendar.getInstance();
 
 		// 获取当前的时间
-		set_date = new SimpleDateFormat("yyyy/MM/dd  hh:mm").format(new Date());
-		text_tiem.setText(set_date);
+		setDate = new SimpleDateFormat("yyyy/MM/dd  hh:mm").format(new Date());
+		textTiem.setText(setDate);
 	}
 
 }
