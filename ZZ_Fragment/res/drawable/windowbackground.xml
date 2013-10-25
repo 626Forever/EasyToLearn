@@ -4,20 +4,20 @@
 
     <solid android:color="#00000000" />
 
+    <padding
+        android:bottom="80dp"
+        android:left="40dp"
+        android:right="40dp"
+        android:top="80dp" />
+
     <stroke
         android:width="3dp"
         android:color="#000000" />
 
     <corners android:radius="3dp" />
 
-    <padding
-        android:bottom="60dp"
-        android:left="50dp"
-        android:right="10dp"
-        android:top="90dp" />
-
     <size
         android:height="500dp"
-        android:width="300dp" />
+        android:width="320dp" />
 
 </shape>

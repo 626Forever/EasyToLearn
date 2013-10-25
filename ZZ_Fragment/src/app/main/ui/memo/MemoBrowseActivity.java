@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,14 +26,15 @@ public class MemoBrowseActivity extends Activity {
 	private TextView contentText;
 	private String title;
 	private String content;
-	private String root;
 	private String sub;
+	private String item;
 	private String detail;
 	private boolean modify = false;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.memo_browse);
 		backBtn = (Button) findViewById(R.id.memo_browse_back);
 		modifyBtn = (Button) findViewById(R.id.memo_browse_modify);
@@ -49,8 +51,8 @@ public class MemoBrowseActivity extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		title = bundle.getString("title");
 		content = bundle.getString("content");
-		root = bundle.getString("root");
 		sub = bundle.getString("sub");
+		item = bundle.getString("item");
 		detail = bundle.getString("detail");
 
 	}
@@ -72,8 +74,8 @@ public class MemoBrowseActivity extends Activity {
 						MemoNewActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putInt("call_code", MemoCallCode.BROWSE_CALL_NEW);
-				bundle.putString("root", root);
 				bundle.putString("sub", sub);
+				bundle.putString("item", item);
 				bundle.putString("detail", detail);
 				bundle.putString("title", title);
 				bundle.putString("content", content);
@@ -97,10 +99,10 @@ public class MemoBrowseActivity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								// TODO Auto-generated method stub
-								FileUtility fileModule = MainActivity.fileModule;
+								FileUtility fileModule = new FileUtility();
 								fileModule.reset();
-								fileModule.createDirectory(root);
 								fileModule.createDirectory(sub);
+								fileModule.createDirectory(item);
 								fileModule.createDirectory(detail);
 								ArrayList<String> dirs = fileModule
 										.getSubFolder();

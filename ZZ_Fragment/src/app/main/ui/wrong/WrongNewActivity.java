@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -33,11 +34,12 @@ public class WrongNewActivity extends Activity {
 	public static final String MIS_BITMAP_NAME = "misBtm";
 	public static final String ANS_BITMAP_NAME = "ansBtm";
 	private static final String TEMP_BITMAP_NAME = "MySyllabusTemp";
+
+	private String sub;
+	private String item;
+	private String detail;
 	private String title = "";
 	private String content = "";
-	private String root;
-	private String sub;
-	private String detail;
 
 	private TextView headText;
 	private Button backBtn;
@@ -57,6 +59,7 @@ public class WrongNewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.wrong_new);
 		headText = (TextView) findViewById(R.id.wrong_new_head_title);
 		backBtn = (Button) findViewById(R.id.wrong_new_back);
@@ -91,15 +94,16 @@ public class WrongNewActivity extends Activity {
 		Bundle bundle = intent.getExtras();
 		call_code = bundle.getInt("call_code");
 		if (call_code == WrongCallCode.BROWSE_CALL_NEW) {
-			root = bundle.getString("root");
+
 			sub = bundle.getString("sub");
+			item = bundle.getString("item");
 			detail = bundle.getString("detail");
 			title = bundle.getString("title");
 			content = bundle.getString("content");
-			FileUtility fileModule = MainActivity.fileModule;
+			FileUtility fileModule = new FileUtility();
 			fileModule.reset();
-			fileModule.createDirectory(root);
 			fileModule.createDirectory(sub);
+			fileModule.createDirectory(item);
 			fileModule.createDirectory(detail);
 			fileModule.createDirectory(title);
 			ArrayList<String> dirs = fileModule.getSubFolder();
@@ -117,18 +121,19 @@ public class WrongNewActivity extends Activity {
 		}
 		if (call_code == WrongCallCode.LIST_CALL_NEW
 				|| call_code == WrongCallCode.MAIN_CALL_NEW) {
-			root = bundle.getString("root");
+
 			sub = bundle.getString("sub");
+			item = bundle.getString("item");
 			detail = bundle.getString("detail");
 		}
 
 	}
 
 	private boolean save() {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
-		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
 		fileModule.createDirectory(detail);
 		fileModule.createDirectory(title);
 		if (fileModule.saveText(content, title)
@@ -140,10 +145,10 @@ public class WrongNewActivity extends Activity {
 	}
 
 	private void delete() {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
-		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
 		fileModule.createDirectory(detail);
 		fileModule.createDirectory(title);
 		ArrayList<String> dirs = fileModule.getSubFolder();

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,13 +31,15 @@ public class KnowledgeItemActivity extends Activity {
 	private AlertDialog addDialog;
 
 	private String input;
-	private String sub = "";
+	private String sub;
+	private String item;
 	private ArrayList<Map<String, Object>> listData;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_knowledge);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		knowledgeItemList = (ListView) findViewById(R.id.main_knowledge_list);
 		backBtn = (Button) findViewById(R.id.main_knowledge_back);
 		addBtn = (Button) findViewById(R.id.main_knowledge_add);
@@ -65,7 +68,7 @@ public class KnowledgeItemActivity extends Activity {
 	}
 
 	private void getData() {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		ArrayList<String> dirs = fileModule.getSubFolder();
@@ -79,7 +82,7 @@ public class KnowledgeItemActivity extends Activity {
 	}
 
 	private void addItem(String title) {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createPreSubFolder(title);
@@ -95,16 +98,15 @@ public class KnowledgeItemActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(KnowledgeItemActivity.this,
-						KnowledgeChooseActivity.class);
-				KnowledgeItemActivity.this.startActivity(intent);
+				item = (String) listData.get(arg2).get("item_title");
+				openKnowledgeChoose(sub, item);
 			}
 		});
 		backBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				KnowledgeItemActivity.this.finish();
 			}
 		});
 		addBtn.setOnClickListener(new OnClickListener() {
@@ -138,7 +140,7 @@ public class KnowledgeItemActivity extends Activity {
 										}
 										for (int i = 0; i < listData.size(); i++) {
 											String s = (String) listData.get(i)
-													.get("list_title");
+													.get("item_title");
 											if (input.equals(s)) {
 												Toast.makeText(
 														KnowledgeItemActivity.this,
@@ -163,5 +165,15 @@ public class KnowledgeItemActivity extends Activity {
 								}).show();
 			}
 		});
+	}
+
+	private void openKnowledgeChoose(String sub, String item) {
+		Intent intent = new Intent(KnowledgeItemActivity.this,
+				KnowledgeChooseActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("sub", sub);
+		bundle.putString("item", item);
+		intent.putExtras(bundle);
+		KnowledgeItemActivity.this.startActivity(intent);
 	}
 }

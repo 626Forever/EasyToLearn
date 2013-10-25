@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,6 +39,7 @@ public class SubjectsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.main_subjects);
 		subjectsList = (ListView) findViewById(R.id.main_subjects_list);
 		backBtn = (Button) findViewById(R.id.main_subjects_back);
@@ -60,7 +62,7 @@ public class SubjectsActivity extends Activity {
 	}
 
 	private void getData() {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		listData.clear();
 		ArrayList<String> dirs = fileModule.getSubFolder();
@@ -77,7 +79,8 @@ public class SubjectsActivity extends Activity {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("item_title", title);
 		listData.add(map);
-		MainActivity.fileModule.createRootSubFolder(title);
+		FileUtility fileModule = new FileUtility();
+		fileModule.createRootSubFolder(title);
 		getData();
 	}
 
@@ -86,7 +89,8 @@ public class SubjectsActivity extends Activity {
 		if (size > 0 && postion < size) {
 			String name = (String) listData.remove(postion).get("item_title");
 			subjectsListAdapter.notifyDataSetChanged();
-			MainActivity.fileModule.deleteRootSubFolder(name);
+			FileUtility fileModule = new FileUtility();
+			fileModule.deleteRootSubFolder(name);
 		}
 	}
 
@@ -139,7 +143,7 @@ public class SubjectsActivity extends Activity {
 										}
 										for (int i = 0; i < listData.size(); i++) {
 											String s = (String) listData.get(i)
-													.get("menuText");
+													.get("item_title");
 											if (input.equals(s)) {
 												Toast.makeText(
 														SubjectsActivity.this,
@@ -175,7 +179,7 @@ public class SubjectsActivity extends Activity {
 											.show();
 								for (int i = 0; i < listData.size(); i++) {
 									String s = (String) listData.get(i).get(
-											"menuText");
+											"item_title");
 									if (input.equals(s)) {
 										Toast.makeText(SubjectsActivity.this,
 												"您已经建立该科目", Toast.LENGTH_SHORT)

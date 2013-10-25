@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +27,9 @@ public class WrongBrowseActivity extends Activity {
 
 	private boolean modify = false;
 	private int call_code;
-	private String root;
+
 	private String sub;
+	private String item;
 	private String detail;
 	private String name;
 	private String title;
@@ -55,7 +57,9 @@ public class WrongBrowseActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.wrong_browse);
+		
 		backBtn = (Button) findViewById(R.id.wrong_browse_back);
 		modifyBtn = (Button) findViewById(R.id.wrong_browse_modify);
 		deleteBtn = (Button) findViewById(R.id.wrong_browse_delete);
@@ -83,18 +87,18 @@ public class WrongBrowseActivity extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		call_code = bundle.getInt("call_code");
 		if (call_code == WrongCallCode.LIST_CALL_BROWSE) {
-			root = bundle.getString("root");
 			sub = bundle.getString("sub");
+			item = bundle.getString("item");
 			detail = bundle.getString("detail");
 			name = bundle.getString("name");
 		}
 	}
 
 	private void getData() {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
-		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
 		fileModule.createDirectory(detail);
 		fileModule.createDirectory(name);
 		ArrayList<String> dirs = fileModule.getSubFolder();
@@ -124,10 +128,10 @@ public class WrongBrowseActivity extends Activity {
 	}
 
 	private void delete() {
-		FileUtility fileModule = MainActivity.fileModule;
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
-		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
 		fileModule.createDirectory(detail);
 		fileModule.createDirectory(name);
 		ArrayList<String> dirs = fileModule.getSubFolder();
@@ -155,8 +159,8 @@ public class WrongBrowseActivity extends Activity {
 						WrongNewActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putInt("call_code", WrongCallCode.BROWSE_CALL_NEW);
-				bundle.putString("root", root);
 				bundle.putString("sub", sub);
+				bundle.putString("item", item);
 				bundle.putString("detail", detail);
 				bundle.putString("name", name);
 				bundle.putString("title", title);

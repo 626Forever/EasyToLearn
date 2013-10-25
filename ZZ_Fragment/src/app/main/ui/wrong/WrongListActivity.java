@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,15 +27,17 @@ public class WrongListActivity extends Activity {
 	private ListView wrongList;
 	private SimpleAdapter adapter;
 	private ArrayList<Map<String, Object>> listData;
-	private String root = "";
 	private String sub = "";
+	private String item = "";
 	private String detail = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.wrong_list);
+		
 		wrongList = (ListView) findViewById(R.id.wrong_list);
 		backBtn = (Button) findViewById(R.id.wrong_list_back);
 		addBtn = (Button) findViewById(R.id.wrong_list_add);
@@ -72,16 +75,14 @@ public class WrongListActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (root.equals("")) {
-					listData.clear();
-					return;
-				}
+
 				Intent intent = new Intent(WrongListActivity.this,
 						WrongNewActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putInt("call_code", WrongCallCode.LIST_CALL_NEW);
-				bundle.putString("root", root);
+
 				bundle.putString("sub", sub);
+				bundle.putString("item", item);
 				bundle.putString("detail", detail);
 				intent.putExtras(bundle);
 				WrongListActivity.this.startActivityForResult(intent,
@@ -99,8 +100,9 @@ public class WrongListActivity extends Activity {
 						WrongBrowseActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putInt("call_code", WrongCallCode.LIST_CALL_BROWSE);
-				bundle.putString("root", root);
+
 				bundle.putString("sub", sub);
+				bundle.putString("item", item);
 				bundle.putString("detail", detail);
 				bundle.putString("name", name);
 				intent.putExtras(bundle);
@@ -113,8 +115,9 @@ public class WrongListActivity extends Activity {
 
 	private void getFileDir() {
 		Bundle bundle = getIntent().getExtras();
-		root = bundle.getString("root");
+
 		sub = bundle.getString("sub");
+		item = bundle.getString("item");
 		detail = bundle.getString("detail");
 	}
 
@@ -127,14 +130,11 @@ public class WrongListActivity extends Activity {
 	}
 
 	private void getList() {
-		if (root.equals("")) {
-			listData.clear();
-			return;
-		}
-		FileUtility fileModule = MainActivity.fileModule;
+
+		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
-		fileModule.createDirectory(root);
 		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
 		fileModule.createDirectory(detail);
 		ArrayList<String> dirs = fileModule.getSubFolder();
 		listData.clear();

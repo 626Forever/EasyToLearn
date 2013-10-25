@@ -3,6 +3,7 @@ package app.main.ui.media;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +25,7 @@ public class MediaActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.media_core);
 		videoBtn = (Button) findViewById(R.id.button1);
 		recoderBtn = (Button) findViewById(R.id.button2);
@@ -78,7 +80,7 @@ public class MediaActivity extends Activity {
 					// 调用系统自带的播放器
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setDataAndType(uri, "audio/mp3");
-					
+
 					startActivity(intent);
 				}
 			}
