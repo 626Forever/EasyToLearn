@@ -159,6 +159,7 @@
                     android:id="@+id/wrong_browse_note_title"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -182,6 +183,7 @@
                     android:layout_height="wrap_content"
                     android:freezesText="true"
                     android:gravity="left"
+                    android:textColor="@color/black"
                     android:textSize="20dp" />
             </LinearLayout>
         </LinearLayout>
