@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +32,7 @@ public class WrongNewActivity extends Activity {
 
 	public static final String MIS_BITMAP_NAME = "misBtm";
 	public static final String ANS_BITMAP_NAME = "ansBtm";
-	private static final String TEMP_BITMAP_NAME = "temp";
+	private static final String TEMP_BITMAP_NAME = "MySyllabusTemp";
 	private String title = "";
 	private String content = "";
 	private String root;
@@ -51,7 +52,6 @@ public class WrongNewActivity extends Activity {
 	private Bitmap misBmp = null;
 	private Bitmap ansBmp = null;
 
-	private FileUtility fileModule;
 	private File temp;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,6 @@ public class WrongNewActivity extends Activity {
 		contentEdit = (EditText) findViewById(R.id.wrong_new_content);
 		misImage = (ImageView) findViewById(R.id.wrong_new_capture_mis_img);
 		ansImage = (ImageView) findViewById(R.id.wrong_new_capture_ans_img);
-		fileModule = new FileUtility();
 		getDirsAndBmps();
 		setListener();
 		notifyWidgets();
@@ -84,6 +83,7 @@ public class WrongNewActivity extends Activity {
 		if (call_code == WrongCallCode.LIST_CALL_NEW) {
 			headText.setText("新建错题");
 		}
+
 	}
 
 	private void getDirsAndBmps() {
@@ -115,12 +115,43 @@ public class WrongNewActivity extends Activity {
 
 			}
 		}
-		if (call_code == WrongCallCode.LIST_CALL_NEW) {
+		if (call_code == WrongCallCode.LIST_CALL_NEW
+				|| call_code == WrongCallCode.MAIN_CALL_NEW) {
 			root = bundle.getString("root");
 			sub = bundle.getString("sub");
 			detail = bundle.getString("detail");
 		}
 
+	}
+
+	private boolean save() {
+		FileUtility fileModule = MainActivity.fileModule;
+		fileModule.reset();
+		fileModule.createDirectory(root);
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(detail);
+		fileModule.createDirectory(title);
+		if (fileModule.saveText(content, title)
+				&& fileModule.savePhoto(misBmp, MIS_BITMAP_NAME)
+				&& fileModule.savePhoto(ansBmp, ANS_BITMAP_NAME)) {
+			return true;
+		}
+		return false;
+	}
+
+	private void delete() {
+		FileUtility fileModule = MainActivity.fileModule;
+		fileModule.reset();
+		fileModule.createDirectory(root);
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(detail);
+		fileModule.createDirectory(title);
+		ArrayList<String> dirs = fileModule.getSubFolder();
+		for (int i = 0; i < dirs.size(); i++) {
+			fileModule.deleteFile(dirs.get(i));
+		}
+		fileModule.Rollback();
+		fileModule.deleteFile(title);
 	}
 
 	private void setListener() {
@@ -135,6 +166,9 @@ public class WrongNewActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				if (call_code == WrongCallCode.BROWSE_CALL_NEW) {
+					delete();
+				}
 				title = titleEdit.getText().toString();
 				content = contentEdit.getText().toString();
 				if (misBmp == null || ansBmp == null) {
@@ -144,19 +178,10 @@ public class WrongNewActivity extends Activity {
 				}
 				if (StringUtility.legalInput(title)) {
 
-					FileUtility fileModule = MainActivity.fileModule;
-					fileModule.reset();
-					fileModule.createDirectory(root);
-					fileModule.createDirectory(sub);
-					fileModule.createDirectory(detail);
-					fileModule.createDirectory(title);
-					if (fileModule.saveText(content, title)
-							&& fileModule.savePhoto(misBmp, MIS_BITMAP_NAME)
-							&& fileModule.savePhoto(ansBmp, ANS_BITMAP_NAME)) {
+					if (save()) {
 						Toast.makeText(WrongNewActivity.this, "吼吼，保存成功",
 								Toast.LENGTH_SHORT).show();
 						WrongNewActivity.this.finish();
-
 					}
 				} else {
 
@@ -218,13 +243,10 @@ public class WrongNewActivity extends Activity {
 	}
 
 	private void requestCamera(int requestCode) {
-		fileModule.reset();
-		fileModule.createDirectory(root);
-		fileModule.createDirectory(sub);
-		fileModule.createDirectory(detail);
-		temp = fileModule.createFileFromName(TEMP_BITMAP_NAME);
+		temp = new File(Environment.getExternalStorageDirectory()
+				+ File.separator + TEMP_BITMAP_NAME);
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
-		startActivityForResult(intent, requestCode);
+		WrongNewActivity.this.startActivityForResult(intent, requestCode);
 	}
 }

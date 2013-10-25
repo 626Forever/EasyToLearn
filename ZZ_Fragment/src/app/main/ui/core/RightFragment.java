@@ -22,6 +22,7 @@ import android.widget.Toast;
 import app.main.R;
 import app.main.ui.memo.MemoNewActivity;
 import app.main.ui.memo.MemoBrowseActivity;
+import app.main.ui.wrong.WrongCallCode;
 import app.main.ui.wrong.WrongNewActivity;
 import app.main.ui.wrong.WrongListActivity;
 import app.main.util.FileUtility;
@@ -118,6 +119,7 @@ public class RightFragment extends Fragment {
 					Intent intent = new Intent(getActivity(),
 							MemoNewActivity.class);
 					Bundle bundle = new Bundle();
+					bundle.putInt("call_code", WrongCallCode.MAIN_CALL_NEW);
 					bundle.putString("root", root);
 					bundle.putString("sub", sub);
 					bundle.putString("detail", detail);
@@ -179,6 +181,7 @@ public class RightFragment extends Fragment {
 					Intent intent = new Intent(getActivity(),
 							WrongNewActivity.class);
 					Bundle bundle = new Bundle();
+					bundle.putInt("call_code", WrongCallCode.MAIN_CALL_NEW);
 					bundle.putString("root", root);
 					bundle.putString("sub", sub);
 					bundle.putString("detail", detail);
