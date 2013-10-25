@@ -14,7 +14,7 @@
         android:id="@+id/main_subject_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_app_exchange" />
+        android:src="@drawable/icon_subjects" />
 
     <LinearLayout
         android:layout_width="fill_parent"

@@ -55,7 +55,7 @@
             android:paddingLeft="12sp"
             android:paddingRight="12sp"
             android:paddingTop="10sp"
-            android:text="@string/button_back" >
+            android:text="@string/button_modify" >
         </Button>
 
         <Button

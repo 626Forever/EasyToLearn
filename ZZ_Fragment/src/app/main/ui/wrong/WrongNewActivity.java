@@ -22,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
@@ -79,14 +78,14 @@ public class WrongNewActivity extends Activity {
 
 	private void notifyWidgets() {
 		if (call_code == WrongCallCode.BROWSE_CALL_NEW) {
-			headText.setText("修改错题");
+			headText.setText(this.getString(R.string.wrong_modify_title));
 			titleEdit.setText(title);
 			contentEdit.setText(content);
 			misImage.setImageBitmap(misBmp);
 			ansImage.setImageBitmap(ansBmp);
 		}
 		if (call_code == WrongCallCode.LIST_CALL_NEW) {
-			headText.setText("新建错题");
+			headText.setText(this.getString(R.string.wrong_new_title));
 		}
 
 	}

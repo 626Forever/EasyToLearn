@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="8sp"
-                android:src="@drawable/icon_more_groups" />
+                android:src="@drawable/icon_wrong" />
 
             <TextView
                 android:id="@+id/wrong_item_title"

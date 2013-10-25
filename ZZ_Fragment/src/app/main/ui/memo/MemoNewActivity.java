@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
@@ -67,10 +66,10 @@ public class MemoNewActivity extends Activity {
 
 	private void notifyWidgets() {
 		if (call_code == MemoCallCode.MAIN_CALL_NEW) {
-			headText.setText("新建心得");
+			headText.setText(this.getString(R.string.memo_new_title));
 		}
 		if (call_code == MemoCallCode.BROWSE_CALL_NEW) {
-			headText.setText("修改心得");
+			headText.setText(this.getString(R.string.memo_modify_title));
 			titleEdit.setText(title);
 			contentEdit.setText(content);
 		}

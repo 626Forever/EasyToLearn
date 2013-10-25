@@ -17,6 +17,9 @@
     <string name="button_modify">修改</string>
     <string name="button_save">保存</string>
     <string name="button_add">添加</string>
+    <string name="button_wrong_browse_mis">浏览错题</string>
+    <string name="button_wrong_browse_ans">浏览答案</string>
+    <string name="button_wrong_browse_note">错题心得</string>
     <string name="file_root">MySyllabus</string>
     <string name="file_learn_folder">学习心得</string>
     <string name="file_wrong_folder">错题整理</string>

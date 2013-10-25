@@ -206,8 +206,12 @@
                 style="@style/header_action_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_toolbar_comment"
-                android:text="浏览错题" >
+                android:background="@drawable/btn_action_additional"
+                android:paddingBottom="10sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
+                android:paddingTop="10sp"
+                android:text="@string/button_wrong_browse_mis" >
             </Button>
         </LinearLayout>
 
@@ -223,8 +227,12 @@
                 style="@style/header_action_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_toolbar_comment"
-                android:text="浏览答案" >
+                android:background="@drawable/btn_action_additional"
+                android:paddingBottom="10sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
+                android:paddingTop="10sp"
+                android:text="@string/button_wrong_browse_ans" >
             </Button>
         </LinearLayout>
 
@@ -240,8 +248,12 @@
                 style="@style/header_action_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_toolbar_comment"
-                android:text="错题心得" >
+                android:background="@drawable/btn_action_additional"
+                android:paddingBottom="10sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
+                android:paddingTop="10sp"
+                android:text="@string/button_wrong_browse_note" >
             </Button>
         </LinearLayout>
     </LinearLayout>
