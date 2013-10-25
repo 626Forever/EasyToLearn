@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
+import app.main.ui.memo.MemoCallCode;
 import app.main.ui.memo.MemoNewActivity;
 import app.main.ui.memo.MemoBrowseActivity;
 import app.main.ui.wrong.WrongCallCode;
@@ -119,7 +120,7 @@ public class RightFragment extends Fragment {
 					Intent intent = new Intent(getActivity(),
 							MemoNewActivity.class);
 					Bundle bundle = new Bundle();
-					bundle.putInt("call_code", WrongCallCode.MAIN_CALL_NEW);
+					bundle.putInt("call_code", MemoCallCode.MAIN_CALL_NEW);
 					bundle.putString("root", root);
 					bundle.putString("sub", sub);
 					bundle.putString("detail", detail);
@@ -139,15 +140,15 @@ public class RightFragment extends Fragment {
 			fileModule.createDirectory(root);
 			fileModule.createDirectory(sub);
 			fileModule.createDirectory(detail);
-			String name = fileModule.getSubFolder().get(0);
-			String data = fileModule.readText(name);
+			String title = fileModule.getSubFolder().get(0);
+			String data = fileModule.readText(title);
 
 			Intent intent = new Intent(getActivity(), MemoBrowseActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putString("root", root);
 			bundle.putString("sub", sub);
 			bundle.putString("detail", detail);
-			bundle.putString("name", StringUtility.getFileName(name));
+			bundle.putString("title", StringUtility.getFileName(title));
 			bundle.putString("content", data);
 			intent.putExtras(bundle);
 			parent.startActivity(intent);

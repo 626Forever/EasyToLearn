@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,8 +23,7 @@ public class MemoBrowseActivity extends Activity {
 	private Button deleteBtn;
 	private TextView titleText;
 	private TextView contentText;
-	private TextView timeText;
-	private String name;
+	private String title;
 	private String content;
 	private String root;
 	private String sub;
@@ -37,18 +37,17 @@ public class MemoBrowseActivity extends Activity {
 		backBtn = (Button) findViewById(R.id.memo_browse_back);
 		modifyBtn = (Button) findViewById(R.id.memo_browse_modify);
 		deleteBtn = (Button) findViewById(R.id.memo_browse_delete);
-		timeText = (TextView) findViewById(R.id.memo_browse_title_tiem);
 		titleText = (TextView) findViewById(R.id.memo_browse_title);
 		contentText = (TextView) findViewById(R.id.memo_browse_content);
 		getData();
-		titleText.setText(name);
+		titleText.setText(title);
 		contentText.setText(content);
 		setListener();
 	}
 
 	private void getData() {
 		Bundle bundle = getIntent().getExtras();
-		name = bundle.getString("name");
+		title = bundle.getString("title");
 		content = bundle.getString("content");
 		root = bundle.getString("root");
 		sub = bundle.getString("sub");
@@ -69,7 +68,18 @@ public class MemoBrowseActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				modiftBtnChangeState();
+				Intent intent = new Intent(MemoBrowseActivity.this,
+						MemoNewActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putInt("call_code", MemoCallCode.BROWSE_CALL_NEW);
+				bundle.putString("root", root);
+				bundle.putString("sub", sub);
+				bundle.putString("detail", detail);
+				bundle.putString("title", title);
+				bundle.putString("content", content);
+				intent.putExtras(bundle);
+				MemoBrowseActivity.this.startActivity(intent);
+				MemoBrowseActivity.this.finish();
 
 			}
 		});
