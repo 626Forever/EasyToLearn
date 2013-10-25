@@ -26,6 +26,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="app.main.ui.core.SubjectsActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
+        </activity>
+        <activity
+            android:name="app.main.ui.core.KnowledgeItemActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
+        </activity>
+        <activity
             android:name="app.main.ui.memo.MemoNewActivity"
             android:screenOrientation="behind"
             android:theme="@style/Common_Theme" >

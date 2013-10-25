@@ -12,10 +12,10 @@
     android:paddingTop="4sp" >
 
     <ImageView
-        android:id="@+id/ivGroup"
+        android:id="@+id/main_subject_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_group" />
+        android:src="@drawable/icon_app_exchange" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -26,7 +26,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tvGroupName"
+            android:id="@+id/main_subject_title"
             style="@style/list_user_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,17 +35,11 @@
             android:text="科目" >
         </TextView>
 
-        <TextView
-            android:id="@+id/tvImpress"
-            style="@style/list_user_impress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="呵呵" >
-        </TextView>
+        
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ivMoreDetail"
+        android:id="@+id/main_subject_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/icon_more_detail" />

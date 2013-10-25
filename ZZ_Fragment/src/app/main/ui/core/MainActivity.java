@@ -1,8 +1,15 @@
 package app.main.ui.core;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import app.main.R;
 import app.main.url.SlidingMenu;
 import app.main.util.FileUtility;
@@ -18,33 +25,11 @@ public class MainActivity extends FragmentActivity {
 
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		setContentView(R.layout.main_core);
-		mSlidingMenu = (SlidingMenu) findViewById(R.id.main_sliding_menu);
-		mSlidingMenu.setLeftView(getLayoutInflater().inflate(
-				R.layout.main_left_frame, null));
-		mSlidingMenu.setRightView(getLayoutInflater().inflate(
-				R.layout.main_right_frame, null));
-		mSlidingMenu.setCenterView(getLayoutInflater().inflate(
-				R.layout.main_center_frame, null));
-		initFileModel();
-		initWidgets();
-
-	}
-
-	private void initWidgets() {
-		t = this.getSupportFragmentManager().beginTransaction();
-		leftFragment = new LeftFragment(this);
-		rightFragment = new RightFragment(this);
-		t.replace(R.id.left_frame, leftFragment);
-		t.replace(R.id.right_frame, rightFragment);
-
-		centerFragment = new SampleListFragment(this);
-		t.replace(R.id.main_center_frame, centerFragment);
-		t.commit();
-	}
-
-	private void initFileModel() {
+		setContentView(R.layout.main_center);
 		fileModule = new FileUtility();
+		Intent intent = new Intent(MainActivity.this, SubjectsActivity.class);
+		startActivity(intent);
+
 	}
 
 	public void showLeft() {
