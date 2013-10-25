@@ -34,6 +34,7 @@ public class KnowledgeItemActivity extends Activity {
 	private String sub;
 	private String item;
 	private ArrayList<Map<String, Object>> listData;
+	FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,7 +44,7 @@ public class KnowledgeItemActivity extends Activity {
 		knowledgeItemList = (ListView) findViewById(R.id.main_knowledge_list);
 		backBtn = (Button) findViewById(R.id.main_knowledge_back);
 		addBtn = (Button) findViewById(R.id.main_knowledge_add);
-
+		fileModule = new FileUtility(this);
 		listData = new ArrayList<Map<String, Object>>();
 		initAdapter();
 		knowledgeItemList.setAdapter(knowledgeItemAdapter);
@@ -68,7 +69,6 @@ public class KnowledgeItemActivity extends Activity {
 	}
 
 	private void getData() {
-		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		ArrayList<String> dirs = fileModule.getSubFolder();
@@ -82,7 +82,6 @@ public class KnowledgeItemActivity extends Activity {
 	}
 
 	private void addItem(String title) {
-		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createPreSubFolder(title);
@@ -113,14 +112,10 @@ public class KnowledgeItemActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (sub.equals("")) {
-					Toast.makeText(KnowledgeItemActivity.this, "请选择学习科目",
-							Toast.LENGTH_SHORT).show();
-					return;
-				}
+
 				edit = new EditText(KnowledgeItemActivity.this);
 				addDialog = new AlertDialog.Builder(KnowledgeItemActivity.this)
-						.setTitle("请输入科目名")
+						.setTitle("请输入学习条目")
 						.setIcon(android.R.drawable.ic_dialog_info)
 						.setView(edit)
 						.setPositiveButton(

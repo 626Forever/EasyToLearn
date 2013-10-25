@@ -5,54 +5,55 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/llHeaderBase"
+        android:id="@+id/media_head"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55sp"
         android:background="@drawable/bg_header"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingBottom="0sp"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingTop="0sp" >
 
-        <ImageButton
-            android:id="@+id/ibProfileImage"
+        <Button
+            android:id="@+id/media_back"
+            style="@style/header_action_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_account_display"
-            android:src="@drawable/icon_header_default_min" >
-        </ImageButton>
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingBottom="8sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:paddingTop="8sp"
+            android:text="@string/button_back" >
+        </Button>
 
         <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
+            android:id="@+id/media_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:gravity="center"
-            android:marqueeRepeatLimit="1"
             android:singleLine="true"
-            android:text="呵呵"
+            android:text="科目"
             android:textAppearance="@style/header_title" >
         </TextView>
 
-        <ImageButton
-            android:id="@+id/ibGroup"
+        <Button
+            android:id="@+id/media_add"
+            style="@style/header_action_additional"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_header_divider"
-            android:src="@drawable/btn_group" >
-        </ImageButton>
-
-        <ImageButton
-            android:id="@+id/ibEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_header_divider"
-            android:src="@drawable/selector_btn_status" >
-        </ImageButton>
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingBottom="10sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:paddingTop="10sp"
+            android:text="添加" >
+        </Button>
     </LinearLayout>
 
     <Button

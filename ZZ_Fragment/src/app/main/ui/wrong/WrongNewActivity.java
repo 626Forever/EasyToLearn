@@ -55,13 +55,14 @@ public class WrongNewActivity extends Activity {
 	private Bitmap ansBmp = null;
 
 	private File temp;
+	private FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.wrong_new);
-		headText = (TextView) findViewById(R.id.wrong_new_head_title);
+		headText = (TextView) findViewById(R.id.wrong_new_head_text);
 		backBtn = (Button) findViewById(R.id.wrong_new_back);
 		saveBtn = (Button) findViewById(R.id.wrong_new_save);
 		misBtn = (Button) findViewById(R.id.wrong_new_capture_mis_btn);
@@ -70,6 +71,7 @@ public class WrongNewActivity extends Activity {
 		contentEdit = (EditText) findViewById(R.id.wrong_new_content);
 		misImage = (ImageView) findViewById(R.id.wrong_new_capture_mis_img);
 		ansImage = (ImageView) findViewById(R.id.wrong_new_capture_ans_img);
+		fileModule = new FileUtility(this);
 		getDirsAndBmps();
 		setListener();
 		notifyWidgets();
@@ -100,7 +102,6 @@ public class WrongNewActivity extends Activity {
 			detail = bundle.getString("detail");
 			title = bundle.getString("title");
 			content = bundle.getString("content");
-			FileUtility fileModule = new FileUtility();
 			fileModule.reset();
 			fileModule.createDirectory(sub);
 			fileModule.createDirectory(item);
@@ -130,7 +131,7 @@ public class WrongNewActivity extends Activity {
 	}
 
 	private boolean save() {
-		FileUtility fileModule = new FileUtility();
+
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);
@@ -145,7 +146,7 @@ public class WrongNewActivity extends Activity {
 	}
 
 	private void delete() {
-		FileUtility fileModule = new FileUtility();
+
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);

@@ -28,9 +28,10 @@ public class KnowledgeChooseActivity extends Activity {
 	private Button wrongBtn;
 	private Button mediaBtn;
 
-	private String subs[] = new String[] { "学习心得", "错题整理", "课堂笔记" };
+	private String subs[];
 	private String sub;
 	private String item;
+	FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -40,6 +41,11 @@ public class KnowledgeChooseActivity extends Activity {
 		learnBtn = (Button) findViewById(R.id.main_knowledge_learn_btn);
 		wrongBtn = (Button) findViewById(R.id.main_knowledge_wrong_btn);
 		mediaBtn = (Button) findViewById(R.id.main_knowledge_media_btn);
+		fileModule = new FileUtility(this);
+		subs = new String[] { this.getString(R.string.file_learn_folder),
+				this.getString(R.string.file_wrong_folder),
+				this.getString(R.string.file_media_folder) };
+
 		initWidgets();
 		getDirs();
 		setListener();
@@ -83,8 +89,6 @@ public class KnowledgeChooseActivity extends Activity {
 	}
 
 	private void openLearn(final String detail) {
-
-		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);
@@ -139,8 +143,6 @@ public class KnowledgeChooseActivity extends Activity {
 	}
 
 	private void openWrong(final String detail) {
-
-		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);

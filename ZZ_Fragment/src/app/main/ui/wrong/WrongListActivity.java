@@ -30,6 +30,7 @@ public class WrongListActivity extends Activity {
 	private String sub = "";
 	private String item = "";
 	private String detail = "";
+	FileUtility fileModule;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,12 @@ public class WrongListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.wrong_list);
-		
+
 		wrongList = (ListView) findViewById(R.id.wrong_list);
 		backBtn = (Button) findViewById(R.id.wrong_list_back);
 		addBtn = (Button) findViewById(R.id.wrong_list_add);
 		listData = new ArrayList<Map<String, Object>>();
+		fileModule = new FileUtility(this);
 		initAdapter();
 		getFileDir();
 		getList();
@@ -131,7 +133,6 @@ public class WrongListActivity extends Activity {
 
 	private void getList() {
 
-		FileUtility fileModule = new FileUtility();
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);

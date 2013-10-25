@@ -16,12 +16,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
+import app.main.R;
 
 /**
  * 文件处理类,包含文件目录的创建，文件的创建删除，文件的读写，文件的保存等功能。
@@ -30,9 +31,10 @@ import android.util.Log;
  * 
  */
 public class FileUtility {
-	private final static String FUCTION_NOTE_DIR = "学习心得";
-	private final static String FUCTION_WRONG_DIR = "错题整理";
-	private final static String FUCTION_CLASS_DIR = "课堂笔记";
+	private static String FUCTION_ROOT_DIR = "MySyllabus";
+	private static String FUCTION_LEARN_DIR = "学习心得";
+	private static String FUCTION_WRONG_DIR = "错题整理";
+	private static String FUCTION_MEDIA_DIR = "课堂笔记";
 
 	private String rootPath;
 	/**
@@ -48,9 +50,14 @@ public class FileUtility {
 	 * 创建项目存储目录
 	 * 
 	 */
-	public FileUtility() {
+	public FileUtility(Context context) {
+		FUCTION_ROOT_DIR = context.getString(R.string.file_root);
+		FUCTION_LEARN_DIR = context.getString(R.string.file_learn_folder);
+		FUCTION_WRONG_DIR = context.getString(R.string.file_wrong_folder);
+		FUCTION_MEDIA_DIR = context.getString(R.string.file_media_folder);
+		
 		SDPath = Environment.getExternalStorageDirectory() + File.separator;
-		rootPath = SDPath + "MySyllabus" + File.separator;
+		rootPath = SDPath + FUCTION_ROOT_DIR + File.separator;
 		previousPath = rootPath;
 		/**
 		 * 新建项目存储根目录
@@ -110,11 +117,11 @@ public class FileUtility {
 
 	public File createPreSubFolder(String subName) {
 		File file = createDirectory(subName);
-		createDirectory(FUCTION_NOTE_DIR);
+		createDirectory(FUCTION_LEARN_DIR);
 		Rollback();
 		createDirectory(FUCTION_WRONG_DIR);
 		Rollback();
-		createDirectory(FUCTION_CLASS_DIR);
+		createDirectory(FUCTION_MEDIA_DIR);
 		return file;
 	}
 

@@ -25,7 +25,6 @@ import app.main.util.StringUtility;
 
 public class WrongBrowseActivity extends Activity {
 
-	private boolean modify = false;
 	private int call_code;
 
 	private String sub;
@@ -53,13 +52,14 @@ public class WrongBrowseActivity extends Activity {
 	private RelativeLayout misLayout;
 	private RelativeLayout ansLayout;
 	private LinearLayout noteLayout;
+	private FileUtility fileModule;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.wrong_browse);
-		
+
 		backBtn = (Button) findViewById(R.id.wrong_browse_back);
 		modifyBtn = (Button) findViewById(R.id.wrong_browse_modify);
 		deleteBtn = (Button) findViewById(R.id.wrong_browse_delete);
@@ -77,6 +77,7 @@ public class WrongBrowseActivity extends Activity {
 		misLayout.setVisibility(View.INVISIBLE);
 		ansLayout.setVisibility(View.INVISIBLE);
 		noteLayout.setVisibility(View.VISIBLE);
+		fileModule = new FileUtility(this);
 		getFileDirs();
 		getData();
 		notifyWidgets();
@@ -95,7 +96,7 @@ public class WrongBrowseActivity extends Activity {
 	}
 
 	private void getData() {
-		FileUtility fileModule = new FileUtility();
+
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);
@@ -128,7 +129,7 @@ public class WrongBrowseActivity extends Activity {
 	}
 
 	private void delete() {
-		FileUtility fileModule = new FileUtility();
+
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);

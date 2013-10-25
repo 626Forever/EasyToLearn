@@ -30,6 +30,7 @@ public class MemoBrowseActivity extends Activity {
 	private String item;
 	private String detail;
 	private boolean modify = false;
+	FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -41,6 +42,7 @@ public class MemoBrowseActivity extends Activity {
 		deleteBtn = (Button) findViewById(R.id.memo_browse_delete);
 		titleText = (TextView) findViewById(R.id.memo_browse_title);
 		contentText = (TextView) findViewById(R.id.memo_browse_content);
+		fileModule = new FileUtility(this);
 		getData();
 		titleText.setText(title);
 		contentText.setText(content);
@@ -99,7 +101,6 @@ public class MemoBrowseActivity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								// TODO Auto-generated method stub
-								FileUtility fileModule = new FileUtility();
 								fileModule.reset();
 								fileModule.createDirectory(sub);
 								fileModule.createDirectory(item);

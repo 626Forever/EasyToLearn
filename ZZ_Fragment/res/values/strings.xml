@@ -3,15 +3,23 @@
 
     <string name="hello">Hello World, FragmentActivity!</string>
     <string name="app_name">Fragment</string>
-    <string name="title1">物理力学实验</string>
-    <string name="title2">物理力学实验</string>
-    <string name="title3">物理力学实验</string>
-    <string name="title4">物理力学实验</string>
-    <string name="title5">物理力学实验</string>
-    <string name="title6">物理力学实验</string>
-    <string name="title7">物理力学实验</string>
-    <string name="test">物理实验要求严谨，需要细心仔细</string>
-    <string name="left">科 目</string>
-    <string name="right">笔 记</string>
+    <string name="subjects_title">科目</string>
+    <string name="wrong_browse_title">错题浏览</string>
+    <string name="wrong_new_title">新建错题</string>
+    <string name="wrong_modify_title">修改错题</string>
+    <string name="wrong_list_title">错题</string>
+    <string name="memo_browse_title">心得体会</string>
+    <string name="memo_new_title">新建心得</string>
+    <string name="memo_modify_title">修改心得</string>
+    <string name="knowledge_list_title">知识点</string>
+    <string name="button_back">返回</string>
+    <string name="button_delete">删除</string>
+    <string name="button_modify">修改</string>
+    <string name="button_save">保存</string>
+    <string name="button_add">添加</string>
+    <string name="file_root">MySyllabus</string>
+    <string name="file_learn_folder">学习心得</string>
+    <string name="file_wrong_folder">错题整理</string>
+    <string name="file_media_folder">课堂笔记</string>
 
 </resources>

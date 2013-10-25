@@ -27,7 +27,7 @@
             android:paddingLeft="12sp"
             android:paddingRight="12sp"
             android:paddingTop="8sp"
-            android:text="返回" >
+            android:text="@string/button_back" >
         </Button>
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_weight="1.4"
             android:gravity="center"
             android:singleLine="true"
-            android:text="错题浏览"
+            android:text="@string/wrong_browse_title"
             android:textAppearance="@style/header_title" >
         </TextView>
 
@@ -54,7 +54,7 @@
             android:paddingLeft="12sp"
             android:paddingRight="12sp"
             android:paddingTop="10sp"
-            android:text="修改" >
+            android:text="@string/button_modify" >
         </Button>
 
         <Button

@@ -34,6 +34,7 @@ public class SubjectsActivity extends Activity {
 	private String input;
 	private String subjects[] = new String[] { "数学", "语文", "英语", "物理", "化学",
 			"生物", "政治", "地理", "历史", "其他" };
+	private FileUtility fileModule;
 	private int choose = 0;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class SubjectsActivity extends Activity {
 		subjectsList = (ListView) findViewById(R.id.main_subjects_list);
 		backBtn = (Button) findViewById(R.id.main_subjects_back);
 		addBtn = (Button) findViewById(R.id.main_subjects_add);
-
+		fileModule = new FileUtility(this);
 		listData = new ArrayList<Map<String, Object>>();
 		initAdapter();
 		subjectsList.setAdapter(subjectsListAdapter);
@@ -62,7 +63,7 @@ public class SubjectsActivity extends Activity {
 	}
 
 	private void getData() {
-		FileUtility fileModule = new FileUtility();
+
 		fileModule.reset();
 		listData.clear();
 		ArrayList<String> dirs = fileModule.getSubFolder();
@@ -79,7 +80,6 @@ public class SubjectsActivity extends Activity {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("item_title", title);
 		listData.add(map);
-		FileUtility fileModule = new FileUtility();
 		fileModule.createRootSubFolder(title);
 		getData();
 	}
@@ -89,7 +89,6 @@ public class SubjectsActivity extends Activity {
 		if (size > 0 && postion < size) {
 			String name = (String) listData.remove(postion).get("item_title");
 			subjectsListAdapter.notifyDataSetChanged();
-			FileUtility fileModule = new FileUtility();
 			fileModule.deleteRootSubFolder(name);
 		}
 	}

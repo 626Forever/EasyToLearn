@@ -10,7 +10,7 @@
         android:id="@+id/memo_new_head"
         android:layout_width="fill_parent"
         android:layout_height="55sp"
-        android:background="@drawable/bg_header_image"
+        android:background="@drawable/bg_header"
         android:orientation="horizontal"
         android:paddingBottom="0sp"
         android:paddingLeft="8sp"
@@ -21,11 +21,14 @@
             android:id="@+id/memo_new_back"
             style="@style/header_action_back"
             android:layout_width="wrap_content"
-            android:layout_height="40sp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:paddingLeft="10sp"
-            android:text="返回" >
+            android:paddingBottom="8sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:paddingTop="8sp"
+            android:text="@string/button_back" >
         </Button>
 
         <TextView
@@ -36,7 +39,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="编写心得"
+            android:text="@string/memo_new_title"
             android:textAppearance="@style/header_title" >
         </TextView>
 
@@ -44,12 +47,14 @@
             android:id="@+id/memo_new_save"
             style="@style/header_action_additional"
             android:layout_width="wrap_content"
-            android:layout_height="40sp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:paddingBottom="10sp"
             android:paddingLeft="12sp"
             android:paddingRight="12sp"
-            android:text="保存" >
+            android:paddingTop="10sp"
+            android:text="@string/button_save" >
         </Button>
     </LinearLayout>
 

@@ -29,6 +29,7 @@ public class MemoNewActivity extends Activity {
 	private String title;
 	private String content;
 	private int call_code;
+	FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -40,7 +41,7 @@ public class MemoNewActivity extends Activity {
 		contentEdit = (EditText) findViewById(R.id.memo_new_content);
 		saveBtn = (Button) findViewById(R.id.memo_new_save);
 		backBtn = (Button) findViewById(R.id.memo_new_back);
-
+		fileModule = new FileUtility(this);
 		getDirs();
 		notifyWidgets();
 		setListener();
@@ -76,7 +77,7 @@ public class MemoNewActivity extends Activity {
 	}
 
 	private void delete() {
-		FileUtility fileModule = new FileUtility();
+
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);
@@ -98,7 +99,7 @@ public class MemoNewActivity extends Activity {
 				}
 				title = titleEdit.getText().toString();
 				if (StringUtility.legalInput(title)) {
-					FileUtility fileModule = new FileUtility();
+
 					fileModule.reset();
 					fileModule.createDirectory(sub);
 					fileModule.createDirectory(item);
