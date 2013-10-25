@@ -36,6 +36,11 @@
             android:theme="@style/Common_Theme" >
         </activity>
         <activity
+            android:name="app.main.ui.core.KnowledgeChooseActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/notfullscreen" >
+        </activity>
+        <activity
             android:name="app.main.ui.memo.MemoNewActivity"
             android:screenOrientation="behind"
             android:theme="@style/Common_Theme" >

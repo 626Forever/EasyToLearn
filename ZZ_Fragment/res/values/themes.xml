@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- Theme  -->
-	<style name="Common_Theme" parent="android:Theme">
-		<item name="android:windowNoTitle">true</item>			
-		<item name="android:typeface">sans</item>
-	</style>
+
+    <!-- Theme -->
+    <style name="Common_Theme" parent="android:Theme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="notfullscreen" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/windowbackground</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+    </style>
+
 </resources>

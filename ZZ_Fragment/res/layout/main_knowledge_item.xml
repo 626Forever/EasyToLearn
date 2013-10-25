@@ -10,6 +10,12 @@
     android:paddingRight="16sp"
     android:paddingTop="4sp" >
 
+    <ImageView
+        android:id="@+id/main_knowledge_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_app_image" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,43 +33,6 @@
             android:singleLine="true"
             android:text="科目" >
         </TextView>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="6sp" >
-
-            <Button
-                android:id="@+id/main_knowledge_memo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/wrong_button_style"
-                android:minHeight="30dp"
-                android:text="学习心得" />
-
-            <Button
-                android:id="@+id/main_knowledge_wrong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/wrong_button_style"
-                android:minHeight="30dp"
-                android:text="错题整理" />
-
-            <Button
-                android:id="@+id/main_knowledge_wrong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/wrong_button_style"
-                android:minHeight="30dp"
-                android:text="课堂笔记" />
-        </LinearLayout>
     </LinearLayout>
 
     <ImageView

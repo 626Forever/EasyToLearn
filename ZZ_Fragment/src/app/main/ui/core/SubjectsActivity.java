@@ -78,8 +78,7 @@ public class SubjectsActivity extends Activity {
 		map.put("item_title", title);
 		listData.add(map);
 		MainActivity.fileModule.createRootSubFolder(title);
-		subjectsListAdapter.notifyDataSetChanged();
-
+		getData();
 	}
 
 	public void removeItem(int postion) {
