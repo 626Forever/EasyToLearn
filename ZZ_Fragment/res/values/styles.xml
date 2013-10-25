@@ -6,7 +6,7 @@
     </style>
 
     <style name="panel_background">
-        <item name="android:background">@drawable/shape_panel_background</item>
+        <item name="android:background">@drawable/bg_panel_background</item>
     </style>
 
     <style name="header_action_back">
@@ -14,7 +14,7 @@
         <item name="android:textColor">@color/selector_btn_header_action</item>
         <item name="android:textStyle">normal</item>
         <item name="android:typeface">sans</item>
-        <item name="android:background">@drawable/selector_btn_action_back</item>
+        <item name="android:background">@drawable/btn_action_back</item>
     </style>
 
     <style name="header_title">
@@ -29,7 +29,7 @@
         <item name="android:textColor">@color/selector_btn_header_action</item>
         <item name="android:textStyle">normal</item>
         <item name="android:typeface">sans</item>
-        <item name="android:background">@drawable/selector_btn_action_additional</item>
+        <item name="android:background">@drawable/btn_action_additional</item>
     </style>
 
     <style name="list_account_screen_name">
