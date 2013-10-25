@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
+import app.main.ui.media.MediaActivity;
 import app.main.ui.memo.MemoCallCode;
 import app.main.ui.memo.MemoNewActivity;
 import app.main.ui.memo.MemoBrowseActivity;
@@ -64,7 +65,7 @@ public class RightFragment extends Fragment {
 					openWrong(subs[arg2]);
 					break;
 				case 2:
-					openClass();
+					openRecoder(subs[arg2]);
 					break;
 				}
 			}
@@ -209,7 +210,8 @@ public class RightFragment extends Fragment {
 
 	}
 
-	private void openClass() {
-
+	private void openRecoder(final String detail) {
+		Intent intent = new Intent(getActivity(), MediaActivity.class);
+		parent.startActivity(intent);
 	}
 }

@@ -33,6 +33,8 @@
         </activity>
         <activity android:name="app.main.ui.wrong.WrongBrowseActivity" >
         </activity>
+        <activity android:name="app.main.ui.media.MediaActivity" >
+        </activity>
     </application>
 
 </manifest>
