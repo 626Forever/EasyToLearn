@@ -5,44 +5,4 @@
     android:background="#fff"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/banner_unit"
-        android:padding="7dip" >
-
-        <ImageView
-            android:id="@+id/main_center_left_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:clickable="true"
-            android:src="@drawable/booklist_menu_normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.8"
-            android:gravity="center_horizontal"
-            android:text="Fragment"
-            android:textColor="#000"
-            android:textSize="17dp" />
-
-        <ImageView
-            android:id="@+id/main_center_right_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="0.1"
-            android:clickable="true"
-            android:src="@drawable/back_normal" />
-    </LinearLayout>
-
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-    </ListView>
-
 </LinearLayout>

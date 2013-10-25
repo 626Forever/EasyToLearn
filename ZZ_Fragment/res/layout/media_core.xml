@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_header_divider"
-            android:src="@drawable/selector_btn_group" >
+            android:src="@drawable/btn_group" >
         </ImageButton>
 
         <ImageButton
