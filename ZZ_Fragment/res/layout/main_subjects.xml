@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/panel_background"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -55,16 +56,16 @@
         </ImageButton>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="录像" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="录音" />
+    <ListView
+        android:id="@+id/lvTheme"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@drawable/bg_header_corner_base"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@drawable/line_seperator"
+        android:footerDividersEnabled="false"
+        android:listSelector="@color/selector_list_item" >
+    </ListView>
 
 </LinearLayout>

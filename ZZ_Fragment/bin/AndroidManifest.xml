@@ -16,24 +16,44 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="app.main.ui.core.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.main.ui.memo.MemoNewActivity" >
+        <activity
+            android:name="app.main.ui.memo.MemoNewActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
         </activity>
-        <activity android:name="app.main.ui.memo.MemoBrowseActivity" >
+        <activity
+            android:name="app.main.ui.memo.MemoBrowseActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
         </activity>
-        <activity android:name="app.main.ui.wrong.WrongListActivity" >
+        <activity
+            android:name="app.main.ui.wrong.WrongListActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
         </activity>
-        <activity android:name="app.main.ui.wrong.WrongNewActivity" >
+        <activity
+            android:name="app.main.ui.wrong.WrongNewActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
         </activity>
-        <activity android:name="app.main.ui.wrong.WrongBrowseActivity" >
+        <activity
+            android:name="app.main.ui.wrong.WrongBrowseActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
         </activity>
-        <activity android:name="app.main.ui.media.MediaActivity" >
+        <activity
+            android:name="app.main.ui.media.MediaActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
         </activity>
     </application>
 

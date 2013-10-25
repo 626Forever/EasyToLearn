@@ -39,4 +39,18 @@
         <item name="android:typeface">sans</item>
     </style>
 
+    <style name="list_user_profile_name">
+        <item name="android:textSize">@dimen/list_user_profile_name</item>
+        <item name="android:textColor">@color/content</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="list_user_impress">
+        <item name="android:textSize">@dimen/list_user_impress</item>
+        <item name="android:textColor">@color/remark</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
 </resources>
