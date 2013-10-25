@@ -8,7 +8,7 @@
         android:id="@+id/wrong_new_head"
         android:layout_width="fill_parent"
         android:layout_height="55sp"
-        android:background="@drawable/bg_header_image"
+        android:background="@drawable/bg_header"
         android:orientation="horizontal"
         android:paddingBottom="0sp"
         android:paddingLeft="8sp"
@@ -19,10 +19,13 @@
             android:id="@+id/wrong_new_back"
             style="@style/header_action_back"
             android:layout_width="wrap_content"
-            android:layout_height="40sp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:paddingLeft="10sp"
+            android:paddingBottom="8sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:paddingTop="8sp"
             android:text="返回" >
         </Button>
 
@@ -42,11 +45,13 @@
             android:id="@+id/wrong_new_save"
             style="@style/header_action_additional"
             android:layout_width="wrap_content"
-            android:layout_height="40sp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:paddingBottom="10sp"
             android:paddingLeft="12sp"
             android:paddingRight="12sp"
+            android:paddingTop="10sp"
             android:text="保存" >
         </Button>
     </LinearLayout>
@@ -54,18 +59,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingTop="10sp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="标题"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/blue"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/wrong_new_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
             android:hint="标题。。。"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
@@ -73,18 +82,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingTop="10sp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="感悟"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/blue"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/wrong_new_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
             android:freezesText="true"
             android:gravity="left"
             android:hint="写点什么吧。。。"
@@ -103,7 +116,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
-            android:background="#fff"
             android:orientation="vertical" >
 
             <ImageView
@@ -130,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_weight="1"
-            android:background="#fff"
             android:orientation="vertical" >
 
             <ImageView
