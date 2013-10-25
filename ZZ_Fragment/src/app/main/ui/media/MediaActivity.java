@@ -1,7 +1,9 @@
 package app.main.ui.media;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.Media;
@@ -50,16 +52,34 @@ public class MediaActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		try {
-			if (resultCode == Activity.RESULT_OK) {
-
-				if (requestCode == RESULT_CAPTURE_VIDEO) {
+			if (requestCode == RESULT_CAPTURE_VIDEO) {
+				if (resultCode == Activity.RESULT_OK) {
 					String path = data.getData().toString();
-
 					Toast toast = Toast.makeText(this, "视频已保存在:" + path,
 							Toast.LENGTH_LONG);
 					toast.setGravity(Gravity.BOTTOM, 0, 0);
 					toast.show();
 
+					Uri uri = Uri.parse(path);
+					// 调用系统自带的播放器
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setDataAndType(uri, "video/mp4");
+					startActivity(intent);
+				}
+			}
+			if (requestCode == RESULT_CAPTURE_RECORDER) {
+				if (resultCode == Activity.RESULT_OK) {
+					String path = data.getData().toString();
+					Toast toast = Toast.makeText(this, "音频已保存在:" + path,
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+					Uri uri = Uri.parse(path);
+					// 调用系统自带的播放器
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setDataAndType(uri, "audio/mp3");
+					
+					startActivity(intent);
 				}
 			}
 		} catch (Exception e) {
