@@ -30,9 +30,9 @@ public class WrongNewActivity extends Activity {
 	private static final int RESULT_CAPTURE_ANS_IMAGE = 2;
 	private int call_code;
 
-	public static final String MIS_BITMAP_NAME = "misBtm";
-	public static final String ANS_BITMAP_NAME = "ansBtm";
-	private static final String TEMP_BITMAP_NAME = "MySyllabusTemp";
+	public static String MIS_BITMAP_NAME;
+	public static String ANS_BITMAP_NAME;
+	private static String TEMP_BITMAP_NAME;
 
 	private String sub;
 	private String item;
@@ -71,6 +71,9 @@ public class WrongNewActivity extends Activity {
 		misImage = (ImageView) findViewById(R.id.wrong_new_capture_mis_img);
 		ansImage = (ImageView) findViewById(R.id.wrong_new_capture_ans_img);
 		fileModule = new FileUtility(this);
+		MIS_BITMAP_NAME = this.getString(R.string.file_wrong_misBmp);
+		ANS_BITMAP_NAME = this.getString(R.string.file_wrong_ansBmp);
+		TEMP_BITMAP_NAME = this.getString(R.string.file_wrong_temp);
 		getDirsAndBmps();
 		setListener();
 		notifyWidgets();

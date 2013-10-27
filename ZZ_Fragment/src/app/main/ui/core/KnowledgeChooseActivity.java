@@ -9,11 +9,15 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Audio.Media;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import app.main.R;
-import app.main.ui.media.MediaActivity;
 import app.main.ui.memo.MemoBrowseActivity;
 import app.main.ui.memo.MemoCallCode;
 import app.main.ui.memo.MemoNewActivity;
@@ -24,6 +28,9 @@ import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
 public class KnowledgeChooseActivity extends Activity {
+	private final static int RESULT_CAPTURE_VIDEO = 0;
+	private final static int RESULT_CAPTURE_RECORDER = 1;
+
 	private Button learnBtn;
 	private Button wrongBtn;
 	private Button mediaBtn;
@@ -31,7 +38,7 @@ public class KnowledgeChooseActivity extends Activity {
 	private String subs[];
 	private String sub;
 	private String item;
-	FileUtility fileModule;
+	private FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -188,8 +195,189 @@ public class KnowledgeChooseActivity extends Activity {
 	}
 
 	private void openRecoder(final String detail) {
-		Intent intent = new Intent(KnowledgeChooseActivity.this,
-				MediaActivity.class);
-		KnowledgeChooseActivity.this.startActivity(intent);
+		fileModule.reset();
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
+		fileModule.createDirectory(detail);
+		final ArrayList<String> dirs = fileModule.getSubFolder();
+		if (dirs.size() == 0) {
+			AlertDialog.Builder builder = new Builder(
+					KnowledgeChooseActivity.this);
+			builder.setMessage("亲，请选择录像还是录音");
+			builder.setTitle("提示");
+			builder.setPositiveButton("录像", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					requestVideo();
+					dialog.dismiss();
+				}
+			});
+			builder.setNegativeButton("录音", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					requestRecoder();
+					dialog.dismiss();
+				}
+			});
+			builder.create().show();
+		}
+		if (dirs.size() == 1) {
+			String filename = StringUtility.getFileName(dirs.get(0));
+			if (filename.equals(R.string.file_media_video)) {
+				AlertDialog.Builder builder = new Builder(
+						KnowledgeChooseActivity.this);
+				builder.setMessage("亲，请选择是播放录像还是录音");
+				builder.setTitle("提示");
+				builder.setPositiveButton("播放录像", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						String path = fileModule.readText(dirs.get(0));
+						showVideo(path);
+						dialog.dismiss();
+					}
+				});
+				builder.setNegativeButton("录音", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						requestRecoder();
+						dialog.dismiss();
+					}
+				});
+				builder.create().show();
+			} else {
+				AlertDialog.Builder builder = new Builder(
+						KnowledgeChooseActivity.this);
+				builder.setMessage("亲，请选择是录像还是播放录音");
+				builder.setTitle("提示");
+				builder.setPositiveButton("录像", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						requestVideo();
+						dialog.dismiss();
+					}
+				});
+				builder.setNegativeButton("播放录音", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						String path = fileModule.readText(dirs.get(0));
+						showRecoder(path);
+						dialog.dismiss();
+					}
+				});
+				builder.create().show();
+			}
+		}
+
+		if (dirs.size() == 2) {
+			AlertDialog.Builder builder = new Builder(
+					KnowledgeChooseActivity.this);
+			builder.setMessage("亲，请选择是播放录像还是播放录音");
+			builder.setTitle("提示");
+			builder.setPositiveButton("播放录像", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					for (int i = 0; i < dirs.size(); i++) {
+						String name = dirs.get(i);
+						if (StringUtility.getFileName(name).equals(
+								getString(R.string.file_media_video))) {
+							String path = fileModule.readText(name);
+							showVideo(path);
+							break;
+						}
+					}
+
+					dialog.dismiss();
+				}
+			});
+			builder.setNegativeButton("播放录音", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					for (int i = 0; i < dirs.size(); i++) {
+						String name = dirs.get(i);
+
+						if (StringUtility.getFileName(name).equals(
+								getString(R.string.file_media_recoder))) {
+							String path = fileModule.readText(name);
+							showRecoder(path);
+							break;
+						}
+					}
+				}
+			});
+			builder.create().show();
+		}
+
+	}
+
+	private void requestVideo() {
+		Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+		startActivityForResult(intent, RESULT_CAPTURE_VIDEO);
+	}
+
+	private void requestRecoder() {
+		Intent intent = new Intent(Media.RECORD_SOUND_ACTION);
+		startActivityForResult(intent, RESULT_CAPTURE_RECORDER);
+	}
+
+	private void showVideo(String path) {
+
+		Uri uri = Uri.parse(path);
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setDataAndType(uri, "video/mp4");
+		startActivity(intent);
+	}
+
+	private void showRecoder(String path) {
+		Uri uri = Uri.parse(path);
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setDataAndType(uri, "audio/mp3");
+		startActivity(intent);
+	}
+
+	private void saveVideo(String path) {
+		fileModule.reset();
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
+		fileModule.createDirectory(subs[2]);
+		fileModule.saveText(path, getString(R.string.file_media_video));
+	}
+
+	private void saveRecoder(String path) {
+		fileModule.reset();
+		fileModule.createDirectory(sub);
+		fileModule.createDirectory(item);
+		fileModule.createDirectory(subs[2]);
+		fileModule.saveText(path, getString(R.string.file_media_recoder));
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		try {
+			if (requestCode == RESULT_CAPTURE_VIDEO) {
+				if (resultCode == Activity.RESULT_OK) {
+					String path = data.getData().toString();
+					Toast toast = Toast.makeText(this, "视频已保存在:" + path,
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+					saveVideo(path);
+				} else {
+					Toast toast = Toast.makeText(this, "没录上。。。。",
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+				}
+			}
+			if (requestCode == RESULT_CAPTURE_RECORDER) {
+				if (resultCode == Activity.RESULT_OK) {
+					String path = data.getData().toString();
+					Toast toast = Toast.makeText(this, "音频已保存在:" + path,
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+					saveRecoder(path);
+				} else {
+
+					Toast toast = Toast.makeText(this, "没录上。。。。",
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.BOTTOM, 0, 0);
+					toast.show();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

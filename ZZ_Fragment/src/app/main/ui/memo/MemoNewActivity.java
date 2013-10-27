@@ -76,7 +76,6 @@ public class MemoNewActivity extends Activity {
 	}
 
 	private void delete() {
-
 		fileModule.reset();
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);
@@ -111,8 +110,8 @@ public class MemoNewActivity extends Activity {
 						Intent intent = new Intent(MemoNewActivity.this,
 								MemoBrowseActivity.class);
 						Bundle bundle = new Bundle();
-						bundle.putString("root", sub);
-						bundle.putString("sub", item);
+						bundle.putString("sub", sub);
+						bundle.putString("item", item);
 						bundle.putString("detail", detail);
 						bundle.putString("title", title);
 						bundle.putString("content", content);

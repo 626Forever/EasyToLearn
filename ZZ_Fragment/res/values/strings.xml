@@ -23,5 +23,10 @@
     <string name="file_learn_folder">学习心得</string>
     <string name="file_wrong_folder">错题整理</string>
     <string name="file_media_folder">课堂笔记</string>
+    <string name="file_wrong_misBmp">misBmp</string>
+    <string name="file_wrong_ansBmp">ansBmp</string>
+    <string name="file_wrong_temp">MySyllabusTemp</string>
+    <string name="file_media_video">video</string>
+    <string name="file_media_recoder">recoder</string>
 
 </resources>

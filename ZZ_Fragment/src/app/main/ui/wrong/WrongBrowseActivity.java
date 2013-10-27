@@ -19,12 +19,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
 public class WrongBrowseActivity extends Activity {
-
+	public static String MIS_BITMAP_NAME;
+	public static String ANS_BITMAP_NAME;
 	private int call_code;
 
 	private String sub;
@@ -73,7 +73,8 @@ public class WrongBrowseActivity extends Activity {
 		misLayout = (RelativeLayout) findViewById(R.id.wrong_browse_mis);
 		ansLayout = (RelativeLayout) findViewById(R.id.wrong_browse_ans);
 		noteLayout = (LinearLayout) findViewById(R.id.wrong_browse_note);
-
+		MIS_BITMAP_NAME = this.getString(R.string.file_wrong_misBmp);
+		ANS_BITMAP_NAME = this.getString(R.string.file_wrong_ansBmp);
 		misLayout.setVisibility(View.INVISIBLE);
 		ansLayout.setVisibility(View.INVISIBLE);
 		noteLayout.setVisibility(View.VISIBLE);
@@ -110,10 +111,10 @@ public class WrongBrowseActivity extends Activity {
 				content = fileModule.readText(fileName);
 			} else {
 				String fName = StringUtility.getFileName(fileName);
-				if (fName.equals(WrongNewActivity.MIS_BITMAP_NAME)) {
+				if (fName.equals(MIS_BITMAP_NAME)) {
 					misBmp = fileModule.readBitmap(fileName);
 				}
-				if (fName.equals(WrongNewActivity.ANS_BITMAP_NAME)) {
+				if (fName.equals(ANS_BITMAP_NAME)) {
 					ansBmp = fileModule.readBitmap(fileName);
 				}
 			}

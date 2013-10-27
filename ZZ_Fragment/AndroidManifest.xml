@@ -38,7 +38,7 @@
         <activity
             android:name="app.main.ui.core.KnowledgeChooseActivity"
             android:screenOrientation="behind"
-            android:theme="@style/notfullscreen" >
+            android:theme="@style/Knowledge_not_full_Theme" >
         </activity>
         <activity
             android:name="app.main.ui.memo.MemoNewActivity"
@@ -68,7 +68,7 @@
         <activity
             android:name="app.main.ui.media.MediaActivity"
             android:screenOrientation="behind"
-            android:theme="@style/Common_Theme" >
+            android:theme="@style/Media_not_full_Theme" >
         </activity>
     </application>
 

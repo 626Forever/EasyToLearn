@@ -55,7 +55,7 @@ public class FileUtility {
 		FUCTION_LEARN_DIR = context.getString(R.string.file_learn_folder);
 		FUCTION_WRONG_DIR = context.getString(R.string.file_wrong_folder);
 		FUCTION_MEDIA_DIR = context.getString(R.string.file_media_folder);
-		
+
 		SDPath = Environment.getExternalStorageDirectory() + File.separator;
 		rootPath = SDPath + FUCTION_ROOT_DIR + File.separator;
 		previousPath = rootPath;
@@ -160,18 +160,32 @@ public class FileUtility {
 		previousPath = dir;
 	}
 
+	public static void RecursionDeleteFile(File file) {
+		if (file.isFile()) {
+			file.delete();
+			return;
+		}
+		if (file.isDirectory()) {
+			File[] childFile = file.listFiles();
+			if (childFile == null || childFile.length == 0) {
+				file.delete();
+				return;
+			}
+			for (File f : childFile) {
+				RecursionDeleteFile(f);
+			}
+			file.delete();
+		}
+	}
+
 	/**
 	 * 删除根目录的一个子层文件夹
 	 * 
 	 * @param folderName
 	 */
-	public void deleteRootSubFolder(String folderName) {
-		String deleteFolder = rootPath + folderName;
-		deleteFile(deleteFolder);
-		previousPath = rootPath;
-		ArrayList<String> folder = getSubFolder();
-		if (folder.size() > 0)
-			previousPath = rootPath + folder.get(0);
+	public void deleteFolder(String folderName) {
+		File file = new File(previousPath + folderName);
+		RecursionDeleteFile(file);
 	}
 
 	/**

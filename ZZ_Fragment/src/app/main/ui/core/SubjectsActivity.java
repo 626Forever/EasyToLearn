@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -13,12 +14,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
+import app.main.ui.memo.MemoBrowseActivity;
 import app.main.util.FileUtility;
 
 public class SubjectsActivity extends Activity {
@@ -76,7 +79,7 @@ public class SubjectsActivity extends Activity {
 		subjectsListAdapter.notifyDataSetChanged();
 	}
 
-	public void addItem(String title) {
+	private void addItem(String title) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("item_title", title);
 		listData.add(map);
@@ -84,12 +87,15 @@ public class SubjectsActivity extends Activity {
 		getData();
 	}
 
-	public void removeItem(int postion) {
+	private void removeItem(int postion) {
+		fileModule.reset();
+		ArrayList<String> dirs = fileModule.getSubFolder();
+
 		int size = listData.size();
 		if (size > 0 && postion < size) {
-			String name = (String) listData.remove(postion).get("item_title");
+			listData.remove(postion).get("item_title");
+			fileModule.deleteFolder(dirs.get(postion));
 			subjectsListAdapter.notifyDataSetChanged();
-			fileModule.deleteRootSubFolder(name);
 		}
 	}
 
@@ -102,6 +108,38 @@ public class SubjectsActivity extends Activity {
 				String sub = (String) listData.get(arg2).get("item_title");
 				openKnowledgeItem(sub);
 
+			}
+		});
+		subjectsList.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				final int loc = arg2;
+				AlertDialog.Builder builder = new Builder(SubjectsActivity.this);
+				builder.setMessage("要删除这个科目吗?");
+				builder.setTitle("提示");
+				builder.setPositiveButton("确定",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								removeItem(loc);
+							}
+						});
+				builder.setNegativeButton("取消",
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								dialog.dismiss();
+
+							}
+						});
+				builder.create().show();
+				return true;
 			}
 		});
 

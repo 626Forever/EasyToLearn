@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -91,6 +93,19 @@ public class KnowledgeItemActivity extends Activity {
 		getData();
 	}
 
+	private void removeItem(int postion) {
+		fileModule.reset();
+		fileModule.createDirectory(sub);
+		ArrayList<String> dirs = fileModule.getSubFolder();
+
+		int size = listData.size();
+		if (size > 0 && postion < size) {
+			listData.remove(postion).get("item_title");
+			fileModule.deleteFolder(dirs.get(postion));
+			knowledgeItemAdapter.notifyDataSetChanged();
+		}
+	}
+
 	private void setListener() {
 		knowledgeItemList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -101,6 +116,40 @@ public class KnowledgeItemActivity extends Activity {
 				openKnowledgeChoose(sub, item);
 			}
 		});
+		knowledgeItemList
+				.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+					public boolean onItemLongClick(AdapterView<?> arg0,
+							View arg1, int arg2, long arg3) {
+						// TODO Auto-generated method stub
+						final int loc = arg2;
+						AlertDialog.Builder builder = new Builder(
+								KnowledgeItemActivity.this);
+						builder.setMessage("要删除这个条目吗?");
+						builder.setTitle("提示");
+						builder.setPositiveButton("确定",
+								new DialogInterface.OnClickListener() {
+
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+										removeItem(loc);
+									}
+								});
+						builder.setNegativeButton("取消",
+								new DialogInterface.OnClickListener() {
+
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+										dialog.dismiss();
+
+									}
+								});
+						builder.create().show();
+						return true;
+					}
+				});
 		backBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {

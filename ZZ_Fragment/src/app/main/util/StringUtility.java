@@ -12,9 +12,7 @@ public class StringUtility {
 
 	public static String getFileName(String file) {
 		String strs[] = file.split("\\.");
-		for (int i = 0; i < strs.length; i++) {
-			System.out.println(strs[i]);
-		}
+
 		return strs[0];
 	}
 }

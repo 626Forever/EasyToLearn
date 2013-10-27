@@ -1,7 +1,6 @@
 package app.main.ui.media;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -20,6 +19,9 @@ public class MediaActivity extends Activity {
 	private final static int RESULT_CAPTURE_RECORDER = 1;
 	private Button videoBtn;
 	private Button recoderBtn;
+	private String sub;
+	private String item;
+	private String detail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,16 @@ public class MediaActivity extends Activity {
 		setContentView(R.layout.media_core);
 		videoBtn = (Button) findViewById(R.id.button1);
 		recoderBtn = (Button) findViewById(R.id.button2);
+		getData();
 		setListener();
+	}
+
+	private void getData() {
+		Bundle bundle = getIntent().getExtras();
+		sub = bundle.getString("sub");
+		item = bundle.getString("item");
+		detail = bundle.getString("detail");
+
 	}
 
 	private void setListener() {

@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
 
 public class MemoBrowseActivity extends Activity {
@@ -132,14 +131,4 @@ public class MemoBrowseActivity extends Activity {
 
 	}
 
-	private void modiftBtnChangeState() {
-		if (!modify) {
-			modify = true;
-			modifyBtn.setText("±£´æ");
-
-		} else {
-			modify = false;
-			modifyBtn.setText("ÐÞ¸Ä");
-		}
-	}
 }
