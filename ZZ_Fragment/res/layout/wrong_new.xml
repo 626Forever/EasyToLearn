@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                android:background="@drawable/btn_wrong_capture"
+                android:background="@drawable/btn_simple"
                 android:minHeight="30dp"
                 android:text="添加错题" />
         </LinearLayout>
@@ -154,12 +154,12 @@
 
             <Button
                 android:id="@+id/wrong_new_capture_ans_btn"
-                style="@drawable/btn_wrong_capture"
+                style="@drawable/btn_simple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                android:background="@drawable/btn_wrong_capture"
+                android:background="@drawable/btn_simple"
                 android:minHeight="30dp"
                 android:text="添加答案" />
         </LinearLayout>

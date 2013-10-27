@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, FragmentActivity!</string>
-    <string name="app_name">Fragment</string>
+    <string name="app_name">EasyToLearn</string>
     <string name="subjects_title">科目</string>
     <string name="wrong_browse_title">错题浏览</string>
     <string name="wrong_new_title">新建错题</string>
