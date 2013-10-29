@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,7 +22,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.memo.MemoBrowseActivity;
 import app.main.util.FileUtility;
 
 public class SubjectsActivity extends Activity {
@@ -147,7 +147,8 @@ public class SubjectsActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				SubjectsActivity.this.setResult(RESULT_OK);
+				SubjectsActivity.this.finish();
 			}
 		});
 
@@ -245,5 +246,13 @@ public class SubjectsActivity extends Activity {
 		bundle.putString("sub", sub);
 		intent.putExtras(bundle);
 		SubjectsActivity.this.startActivity(intent);
+	}
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			SubjectsActivity.this.setResult(RESULT_OK);
+			SubjectsActivity.this.finish();
+		}
+		return false;
 	}
 }
