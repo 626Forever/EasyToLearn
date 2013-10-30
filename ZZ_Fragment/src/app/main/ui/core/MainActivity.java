@@ -1,6 +1,7 @@
 package app.main.ui.core;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import app.main.R;
+import app.main.ui.core.alarm.AlarmCtl;
 import app.main.ui.core.alarm.FloatCtlService;
 
 public class MainActivity extends Activity {
@@ -55,6 +57,8 @@ public class MainActivity extends Activity {
 		mBound = this.getApplicationContext().bindService(
 				new Intent(this, FloatCtlService.class), mConnection,
 				Context.BIND_AUTO_CREATE);
+		AlarmCtl.alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
 		setListener();
 	}
 

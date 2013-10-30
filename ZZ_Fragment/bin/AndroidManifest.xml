@@ -30,6 +30,15 @@
         <service android:name="app.main.ui.core.alarm.FloatCtlService" >
         </service>
 
+        <receiver
+            android:name="app.main.ui.core.alarm.AlarmReceiver"
+            android:process=":remote" />
+
+        <activity
+            android:name="app.main.ui.core.alarm.AlarmActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
+        </activity>
         <activity
             android:name="app.main.ui.core.SubjectsActivity"
             android:screenOrientation="behind"
