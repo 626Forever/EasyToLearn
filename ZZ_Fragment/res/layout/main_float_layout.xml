@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/float_id"
+    <ImageView
+        android:id="@+id/main_float_clock_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:src="@drawable/ic_clock" />
 
 </LinearLayout>

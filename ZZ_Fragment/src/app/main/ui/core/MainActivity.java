@@ -2,10 +2,14 @@ package app.main.ui.core;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.DialogInterface.OnClickListener;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -19,6 +23,8 @@ import android.widget.Toast;
 import app.main.R;
 import app.main.ui.core.alarm.AlarmCtl;
 import app.main.ui.core.alarm.FloatCtlService;
+import app.main.ui.help.AuthorActivity;
+import app.main.ui.help.HelpActivity;
 
 public class MainActivity extends Activity {
 	private static final int START_SUBJECTS_ACTIVITY = 0;
@@ -116,21 +122,39 @@ public class MainActivity extends Activity {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				Intent intent = new Intent(MainActivity.this,
+						HelpActivity.class);
+				startActivity(intent);
 			}
 		});
 		author.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				Intent intent = new Intent(MainActivity.this,
+						AuthorActivity.class);
+				startActivity(intent);
 			}
 		});
 		quit.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				AlertDialog.Builder builder = new Builder(MainActivity.this);
+				builder.setMessage("亲，要退出吗?");
+				builder.setTitle("提示");
+				builder.setPositiveButton("确定", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						System.exit(0);
+					}
+				});
+				builder.setNegativeButton("取消", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
 
+						dialog.dismiss();
+					}
+				});
+				builder.create().show();
 			}
 		});
 	}

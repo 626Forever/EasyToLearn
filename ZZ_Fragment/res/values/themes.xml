@@ -14,8 +14,14 @@
         <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
     </style>
 
-    <style name="Media_not_full_Theme" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@drawable/bg_media_activity</item>
+    <style name="Help_not_full_Theme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/bg_help_activity</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="Author_not_full_Theme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/bg_author_activity</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>

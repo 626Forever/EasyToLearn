@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.Media;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -380,4 +381,12 @@ public class KnowledgeChooseActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+
+		return super.onTouchEvent(event);
+	}
+
 }

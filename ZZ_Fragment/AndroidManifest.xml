@@ -80,9 +80,14 @@
             android:theme="@style/Common_Theme" >
         </activity>
         <activity
-            android:name="app.main.ui.media.MediaActivity"
+            android:name="app.main.ui.help.HelpActivity"
             android:screenOrientation="behind"
-            android:theme="@style/Media_not_full_Theme" >
+            android:theme="@style/Help_not_full_Theme" >
+        </activity>
+        <activity
+            android:name="app.main.ui.help.AuthorActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Author_not_full_Theme" >
         </activity>
     </application>
 

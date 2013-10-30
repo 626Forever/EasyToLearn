@@ -19,6 +19,7 @@ import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import app.main.R;
 
@@ -33,7 +34,7 @@ public class FloatCtlService extends Service {
 	private WindowManager mWindowManager;
 	private WindowManager.LayoutParams wmParams;
 	private LinearLayout mFloatLayout;
-	private Button mFloatView;
+	private ImageView floatImg;
 
 	@Override
 	public void onCreate() {
@@ -87,20 +88,23 @@ public class FloatCtlService extends Service {
 		wmParams = new WindowManager.LayoutParams();
 		mWindowManager = (WindowManager) getApplication().getSystemService(
 				Context.WINDOW_SERVICE);
+		int screenWidth = mWindowManager.getDefaultDisplay().getWidth();
+		int screenHeight = mWindowManager.getDefaultDisplay().getHeight();
 		wmParams.type = LayoutParams.TYPE_PHONE;
 		wmParams.format = PixelFormat.RGBA_8888;
 		wmParams.flags = LayoutParams.FLAG_NOT_FOCUSABLE;
 		wmParams.gravity = Gravity.LEFT | Gravity.TOP;
-		wmParams.x = 0;
-		wmParams.y = 0;
+		wmParams.x = screenWidth * 2 / 3;
+		wmParams.y = screenHeight / 7;
 		wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 		LayoutInflater inflater = LayoutInflater.from(getApplication());
 		mFloatLayout = (LinearLayout) inflater.inflate(
 				R.layout.main_float_layout, null);
 		mWindowManager.addView(mFloatLayout, wmParams);
-		mFloatView = (Button) mFloatLayout.findViewById(R.id.float_id);
-		mFloatView.setOnTouchListener(new OnTouchListener() {
+		floatImg = (ImageView) mFloatLayout
+				.findViewById(R.id.main_float_clock_img);
+		floatImg.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
 				wmParams.x = (int) event.getRawX() - mFloatLayout.getWidth()
@@ -111,7 +115,7 @@ public class FloatCtlService extends Service {
 				return false;
 			}
 		});
-		mFloatView.setOnClickListener(new OnClickListener() {
+		floatImg.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -121,7 +125,7 @@ public class FloatCtlService extends Service {
 							AlarmActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(intent);
-					mFloatView.setVisibility(View.INVISIBLE);
+					floatImg.setVisibility(View.INVISIBLE);
 				}
 			}
 		});
@@ -140,7 +144,7 @@ public class FloatCtlService extends Service {
 			if (action.equals(VIS_LAYOUT)) {
 				if (!visible) {
 					visible = true;
-					mFloatView.setVisibility(View.VISIBLE);
+					floatImg.setVisibility(View.VISIBLE);
 				}
 			}
 		}
