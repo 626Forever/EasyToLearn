@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/panel_background"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/main_alarm_head"
+        android:layout_width="fill_parent"
+        android:layout_height="55sp"
+        android:background="@drawable/bg_header"
+        android:orientation="horizontal"
+        android:paddingBottom="0sp"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingTop="0sp" >
+
+        <Button
+            android:id="@+id/main_alarm_back"
+            style="@style/header_action_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingBottom="8sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:paddingTop="8sp"
+            android:text="@string/button_back" >
+        </Button>
+
+        <TextView
+            android:id="@+id/main_alarm_head_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/alarm_title"
+            android:textAppearance="@style/header_title" >
+        </TextView>
+
+        <Button
+            android:id="@+id/main_alarm_add"
+            style="@style/header_action_additional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingBottom="10sp"
+            android:paddingLeft="12sp"
+            android:paddingRight="12sp"
+            android:paddingTop="10sp"
+            android:visibility="invisible" >
+        </Button>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/main_alarm_set_time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/main_alarm_set_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_simple"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:text="@string/button_alarm_set"
+        android:textColor="@color/blue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/main_alarm_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/btn_simple"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:text="@string/button_alarm_cancel"
+        android:textColor="@color/blue"
+        android:textSize="25dp" />
+
+</LinearLayout>

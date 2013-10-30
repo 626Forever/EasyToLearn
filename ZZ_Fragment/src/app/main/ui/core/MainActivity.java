@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import app.main.R;
+import app.main.ui.core.alarm.FloatCtlService;
 
 public class MainActivity extends Activity {
 	private static final int START_SUBJECTS_ACTIVITY = 0;
@@ -45,7 +46,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		setContentView(R.layout.main_center);
+		setContentView(R.layout.main_core_menu);
 		start = (Button) findViewById(R.id.main_start_btn);
 		help = (Button) findViewById(R.id.main_help_btn);
 		author = (Button) findViewById(R.id.main_author_btn);

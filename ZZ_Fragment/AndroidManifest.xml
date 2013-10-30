@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="app.main.ui.core.FloatCtlService" >
+        <service android:name="app.main.ui.core.alarm.FloatCtlService" >
         </service>
 
         <activity

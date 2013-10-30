@@ -1,4 +1,4 @@
-package app.main.ui.core;
+package app.main.ui.core.alarm;
 
 import android.app.Service;
 import android.content.Context;
@@ -120,7 +120,10 @@ public class FloatCtlService extends Service {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				Intent intent = new Intent(FloatCtlService.this,
+						AlarmActivity.class);
+				startActivity(intent);
+				
 			}
 		});
 

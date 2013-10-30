@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">EasyToLearn</string>
+    <string name="alarm_title">闹钟设置</string>
     <string name="subjects_title">科目</string>
     <string name="wrong_browse_title">错题浏览</string>
     <string name="wrong_new_title">新建错题</string>
@@ -16,6 +17,8 @@
     <string name="button_modify">修改</string>
     <string name="button_save">保存</string>
     <string name="button_add">添加</string>
+    <string name="button_alarm_set">设置闹钟</string>
+    <string name="button_alarm_cancel">取消闹钟</string>
     <string name="button_wrong_browse_mis">浏览错题</string>
     <string name="button_wrong_browse_ans">浏览答案</string>
     <string name="button_wrong_browse_note">错题心得</string>
