@@ -7,9 +7,9 @@ import android.app.AlertDialog.Builder;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.DialogInterface.OnClickListener;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -27,6 +27,7 @@ import app.main.ui.help.AuthorActivity;
 import app.main.ui.help.HelpActivity;
 
 public class MainActivity extends Activity {
+
 	private static final int START_SUBJECTS_ACTIVITY = 0;
 	private Button start;
 	private Button help;
@@ -54,6 +55,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 		setContentView(R.layout.main_core_menu);
 		start = (Button) findViewById(R.id.main_start_btn);
 		help = (Button) findViewById(R.id.main_help_btn);

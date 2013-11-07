@@ -235,6 +235,8 @@ public class WrongNewActivity extends Activity {
 		switch (requestCode) {
 		case RESULT_CAPTURE_MIS_IMAGE:
 			if (resultCode == RESULT_OK) {
+				if (misBmp != null && !misBmp.isRecycled())
+					misBmp.recycle();
 				try {
 					FileInputStream fis = new FileInputStream(temp);
 					misBmp = BitmapFactory.decodeStream(fis);
@@ -251,6 +253,8 @@ public class WrongNewActivity extends Activity {
 			break;
 		case RESULT_CAPTURE_ANS_IMAGE:
 			if (resultCode == RESULT_OK) {
+				if (ansBmp != null && !ansBmp.isRecycled())
+					ansBmp.recycle();
 				try {
 					FileInputStream fis = new FileInputStream(temp);
 					ansBmp = BitmapFactory.decodeStream(fis);
@@ -276,4 +280,15 @@ public class WrongNewActivity extends Activity {
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 		WrongNewActivity.this.startActivityForResult(intent, requestCode);
 	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if (misBmp != null && !misBmp.isRecycled())
+			misBmp.recycle();
+		if (ansBmp != null && !ansBmp.isRecycled())
+			ansBmp.recycle();
+	}
+
 }

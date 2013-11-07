@@ -222,7 +222,8 @@ public class KnowledgeChooseActivity extends Activity {
 		}
 		if (dirs.size() == 1) {
 			String filename = StringUtility.getFileName(dirs.get(0));
-			if (filename.equals(R.string.file_media_video)) {
+
+			if (filename.equals(getString(R.string.file_media_video))) {
 				AlertDialog.Builder builder = new Builder(
 						KnowledgeChooseActivity.this);
 				builder.setMessage("亲，请选择是播放录像还是录音");
