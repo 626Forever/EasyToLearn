@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -14,11 +15,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.main.R;
@@ -74,6 +78,7 @@ public class WrongNewActivity extends Activity {
 		MIS_BITMAP_NAME = this.getString(R.string.file_wrong_misBmp);
 		ANS_BITMAP_NAME = this.getString(R.string.file_wrong_ansBmp);
 		TEMP_BITMAP_NAME = this.getString(R.string.file_wrong_temp);
+
 		getDirsAndBmps();
 		setListener();
 		notifyWidgets();
@@ -90,7 +95,15 @@ public class WrongNewActivity extends Activity {
 		if (call_code == WrongCallCode.LIST_CALL_NEW) {
 			headText.setText(this.getString(R.string.wrong_new_title));
 		}
-
+		WindowManager mWindowManager = (WindowManager) getApplication()
+				.getSystemService(Context.WINDOW_SERVICE);
+		int screenWidth = mWindowManager.getDefaultDisplay().getWidth();
+		int screenHeight = mWindowManager.getDefaultDisplay().getHeight();
+		LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(
+				screenWidth / 3, screenHeight / 4);
+		mParams.gravity = Gravity.CENTER_HORIZONTAL;
+		misImage.setLayoutParams(mParams);
+		ansImage.setLayoutParams(mParams);
 	}
 
 	private void getDirsAndBmps() {
@@ -228,6 +241,9 @@ public class WrongNewActivity extends Activity {
 					temp.delete();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
+				} catch (OutOfMemoryError e) {
+					Toast.makeText(WrongNewActivity.this, "额，没拍成功。。",
+							Toast.LENGTH_SHORT).show();
 				}
 
 				misImage.setImageBitmap(misBmp);
@@ -241,6 +257,9 @@ public class WrongNewActivity extends Activity {
 					temp.delete();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
+				} catch (OutOfMemoryError e) {
+					Toast.makeText(WrongNewActivity.this, "额，没拍成功。。",
+							Toast.LENGTH_SHORT).show();
 				}
 
 				ansImage.setImageBitmap(ansBmp);
