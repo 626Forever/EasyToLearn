@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">EasyToLearn</string>
+    <string name="app_version">v1.0</string>
     <string name="alarm_title">闹钟设置</string>
     <string name="subjects_title">科目</string>
     <string name="wrong_browse_title">错题浏览</string>
