@@ -60,7 +60,11 @@
     <ListView
         android:id="@+id/wrong_list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:background="@drawable/bg_frame"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@drawable/line_seperator"
+        android:listSelector="@color/selector_list_item" >
     </ListView>
 
 </LinearLayout>

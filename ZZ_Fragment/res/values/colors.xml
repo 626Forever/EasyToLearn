@@ -2,7 +2,7 @@
 <resources>
 
     <color name="white">#ffffff</color>
-    <color name="transparent">#00000000</color>
+    <color name="transparent">#e0000000</color>
     <color name="gold">#b89766</color>
     <color name="black">#000000</color>
     <color name="red">#ff0000</color>
@@ -15,7 +15,7 @@
     <color name="background">#f0f4f7</color>
     <color name="content">#000000</color>
     <color name="remark">#b0b0b1</color>
-    
+
     <!-- 框选项背景 -->
     <color name="frame_item_normal">#FFF</color>
     <color name="frame_item_focused">#dadee6</color>
@@ -25,8 +25,8 @@
     <!-- ListView item背景 -->
     <color name="list_item_normal">#edf4fa</color>
     <color name="list_item_highline">#edf4fa</color>
-    <color name="list_item_focused">#dbe8f3</color>
-    <color name="list_item_pressed">#dbe8f3</color>
+    <color name="list_item_focused">#edf4fa</color>
+    <color name="list_item_pressed">#edf4fa</color>
     <color name="list_item_disabled">#dbe8f3</color>
     <color name="list_item_more">#e5eaee</color>
 

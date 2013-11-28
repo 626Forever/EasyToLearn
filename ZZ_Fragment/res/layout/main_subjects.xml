@@ -62,7 +62,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:background="@drawable/bg_header_corner_base"
+        android:background="@drawable/bg_frame"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@drawable/line_seperator"
         android:listSelector="@color/selector_list_item" >
