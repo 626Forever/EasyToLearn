@@ -19,6 +19,8 @@ public class AuthorActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_author_layout);
 		infoText = (TextView) findViewById(R.id.author_text);
+		String h = readAuthor();
+		infoText.setText(h);
 
 	}
 

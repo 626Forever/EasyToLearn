@@ -211,6 +211,7 @@ public class KnowledgeChooseActivity extends Activity {
 					requestVideo();
 					dialog.dismiss();
 				}
+
 			});
 			builder.setNegativeButton("Â¼Òô", new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
@@ -234,12 +235,20 @@ public class KnowledgeChooseActivity extends Activity {
 						showVideo(path);
 						dialog.dismiss();
 					}
+
 				});
 				builder.setNegativeButton("Â¼Òô", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						requestRecoder();
 						dialog.dismiss();
 					}
+				});
+				builder.setNeutralButton("É¾³ýÂ¼Ïñ", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						fileModule.deleteFile(dirs.get(0));
+						dialog.dismiss();
+					}
+
 				});
 				builder.create().show();
 			} else {
@@ -259,6 +268,13 @@ public class KnowledgeChooseActivity extends Activity {
 						showRecoder(path);
 						dialog.dismiss();
 					}
+				});
+				builder.setNeutralButton("É¾³ýÂ¼Òô", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						fileModule.deleteFile(dirs.get(0));
+						dialog.dismiss();
+					}
+
 				});
 				builder.create().show();
 			}
@@ -297,6 +313,45 @@ public class KnowledgeChooseActivity extends Activity {
 						}
 					}
 				}
+			});
+			builder.setNeutralButton("É¾³ý", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					AlertDialog.Builder abuilder = new Builder(
+							KnowledgeChooseActivity.this);
+					abuilder.setMessage("Ç×£¬ÇëÑ¡ÔñÉ¾³ý·ÅÂ¼Ïñ»¹ÊÇÉ¾³ýÂ¼Òô");
+					abuilder.setTitle("ÌáÊ¾");
+					abuilder.setPositiveButton("É¾³ýÂ¼Ïñ", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							for (int i = 0; i < dirs.size(); i++) {
+								String name = dirs.get(i);
+								if (StringUtility.getFileName(name).equals(
+										getString(R.string.file_media_video))) {
+									fileModule.deleteFile(name);
+									break;
+								}
+							}
+
+							dialog.dismiss();
+						}
+					});
+					abuilder.setNegativeButton("É¾³ýÂ¼Òô", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							for (int i = 0; i < dirs.size(); i++) {
+								String name = dirs.get(i);
+
+								if (StringUtility.getFileName(name).equals(
+										getString(R.string.file_media_recoder))) {
+									fileModule.deleteFile(name);
+									break;
+								}
+							}
+
+							dialog.dismiss();
+						}
+					});
+					dialog.dismiss();
+				}
+
 			});
 			builder.create().show();
 		}
@@ -350,7 +405,7 @@ public class KnowledgeChooseActivity extends Activity {
 			if (requestCode == RESULT_CAPTURE_VIDEO) {
 				if (resultCode == Activity.RESULT_OK) {
 					String path = data.getData().toString();
-					Toast toast = Toast.makeText(this, "ÊÓÆµÒÑ±£´æÔÚ:" + path,
+					Toast toast = Toast.makeText(this, "ÊÓÆµÒÑ±£´æ" ,
 							Toast.LENGTH_LONG);
 					toast.setGravity(Gravity.BOTTOM, 0, 0);
 					toast.show();
@@ -365,7 +420,7 @@ public class KnowledgeChooseActivity extends Activity {
 			if (requestCode == RESULT_CAPTURE_RECORDER) {
 				if (resultCode == Activity.RESULT_OK) {
 					String path = data.getData().toString();
-					Toast toast = Toast.makeText(this, "ÒôÆµÒÑ±£´æÔÚ:" + path,
+					Toast toast = Toast.makeText(this, "ÒôÆµÒÑ±£´æ",
 							Toast.LENGTH_LONG);
 					toast.setGravity(Gravity.BOTTOM, 0, 0);
 					toast.show();
