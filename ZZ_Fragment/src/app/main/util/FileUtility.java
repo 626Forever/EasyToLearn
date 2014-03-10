@@ -188,19 +188,9 @@ public class FileUtility {
 		RecursionDeleteFile(file);
 	}
 
-	/**
-	 * 根据指定的路径删除文件。
-	 * 
-	 * @param path
-	 *            文件路径
-	 */
-	public void deleteFile(String name) {
-		File file = new File(previousPath + name);
-		if (!file.exists()) {
-			return;
-		} else {
-			file.delete();
-		}
+	public void deleteFile(String path) {
+		File file = new File(path);
+		RecursionDeleteFile(file);
 	}
 
 	public ArrayList<String> getSubFolder() {

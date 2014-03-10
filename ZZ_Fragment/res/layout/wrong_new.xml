@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/panel_background"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -6,164 +6,170 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/wrong_new_head"
         android:layout_width="fill_parent"
-        android:layout_height="55sp"
-        android:background="@drawable/bg_header"
-        android:orientation="horizontal"
-        android:paddingBottom="0sp"
-        android:paddingLeft="8sp"
-        android:paddingRight="8sp"
-        android:paddingTop="0sp" >
-
-        <Button
-            android:id="@+id/wrong_new_back"
-            style="@style/header_action_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:paddingBottom="8sp"
-            android:paddingLeft="12sp"
-            android:paddingRight="12sp"
-            android:paddingTop="8sp"
-            android:text="@string/button_back" >
-        </Button>
-
-        <TextView
-            android:id="@+id/wrong_new_head_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/wrong_new_title"
-            android:textAppearance="@style/header_title" >
-        </TextView>
-
-        <Button
-            android:id="@+id/wrong_new_save"
-            style="@style/header_action_additional"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:paddingBottom="10sp"
-            android:paddingLeft="12sp"
-            android:paddingRight="12sp"
-            android:paddingTop="10sp"
-            android:text="@string/button_save" >
-        </Button>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10sp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="标题"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/blue"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/wrong_new_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10sp"
-            android:hint="标题。。。"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10sp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="感悟"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/blue"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/wrong_new_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10sp"
-            android:freezesText="true"
-            android:gravity="left"
-            android:hint="写点什么吧。。。"
-            android:inputType="textMultiLine"
-            android:lines="8"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_weight="1"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/wrong_new_capture_mis_img"
-                android:layout_width="280dip"
-                android:layout_height="230dip"
-                android:layout_gravity="center_horizontal"
-                android:background="#DEDEDE"
-                android:scaleType="fitXY" />
+            android:id="@+id/wrong_new_head"
+            android:layout_width="fill_parent"
+            android:layout_height="55sp"
+            android:background="@drawable/bg_header"
+            android:orientation="horizontal"
+            android:paddingBottom="0sp"
+            android:paddingLeft="8sp"
+            android:paddingRight="8sp"
+            android:paddingTop="0sp" >
 
             <Button
-                android:id="@+id/wrong_new_capture_mis_btn"
+                android:id="@+id/wrong_new_back"
+                style="@style/header_action_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/btn_simple"
-                android:minHeight="30dp"
-                android:text="添加错题" />
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:paddingBottom="8sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
+                android:paddingTop="8sp"
+                android:text="@string/button_back" >
+            </Button>
+
+            <TextView
+                android:id="@+id/wrong_new_head_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/wrong_new_title"
+                android:textAppearance="@style/header_title" >
+            </TextView>
+
+            <Button
+                android:id="@+id/wrong_new_save"
+                style="@style/header_action_additional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:paddingBottom="10sp"
+                android:paddingLeft="12sp"
+                android:paddingRight="12sp"
+                android:paddingTop="10sp"
+                android:text="@string/button_save" >
+            </Button>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            android:paddingTop="10sp" >
 
-            <ImageView
-                android:id="@+id/wrong_new_capture_ans_img"
-                android:layout_width="280dip"
-                android:layout_height="230dip"
-                android:layout_gravity="center_horizontal"
-                android:background="#DEDEDE"
-                android:scaleType="fitXY" />
-
-            <Button
-                android:id="@+id/wrong_new_capture_ans_btn"
-                style="@drawable/btn_simple"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@drawable/btn_simple"
-                android:minHeight="30dp"
-                android:text="添加答案" />
+                android:text="标题"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/blue"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/wrong_new_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10sp"
+                android:hint="标题。。。"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10sp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="感悟"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/blue"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/wrong_new_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10sp"
+                android:freezesText="true"
+                android:gravity="left"
+                android:hint="写点什么吧。。。"
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/wrong_new_capture_mis_img"
+                    android:layout_width="280dip"
+                    android:layout_height="230dip"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#DEDEDE"
+                    android:scaleType="fitXY" />
+
+                <Button
+                    android:id="@+id/wrong_new_capture_mis_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/btn_simple"
+                    android:minHeight="30dp"
+                    android:text="添加错题" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/wrong_new_capture_ans_img"
+                    android:layout_width="280dip"
+                    android:layout_height="230dip"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#DEDEDE"
+                    android:scaleType="fitXY" />
+
+                <Button
+                    android:id="@+id/wrong_new_capture_ans_btn"
+                    style="@drawable/btn_simple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/btn_simple"
+                    android:minHeight="30dp"
+                    android:text="添加答案" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

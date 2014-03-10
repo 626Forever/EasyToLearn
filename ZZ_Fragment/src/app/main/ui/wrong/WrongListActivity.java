@@ -20,8 +20,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import app.main.R;
-import app.main.ui.core.KnowledgeItemActivity;
-import app.main.ui.core.MainActivity;
 import app.main.util.FileUtility;
 
 public class WrongListActivity extends Activity {
