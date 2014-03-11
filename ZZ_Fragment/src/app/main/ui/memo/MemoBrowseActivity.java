@@ -28,7 +28,7 @@ public class MemoBrowseActivity extends Activity {
 	private String sub;
 	private String item;
 	private String detail;
-	private boolean modify = false;
+
 	FileUtility fileModule;
 
 	protected void onCreate(Bundle savedInstanceState) {

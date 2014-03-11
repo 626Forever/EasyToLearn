@@ -86,7 +86,9 @@ public class FloatCtlService extends Service {
 		wmParams = new WindowManager.LayoutParams();
 		mWindowManager = (WindowManager) getApplication().getSystemService(
 				Context.WINDOW_SERVICE);
+		@SuppressWarnings("deprecation")
 		int screenWidth = mWindowManager.getDefaultDisplay().getWidth();
+		@SuppressWarnings("deprecation")
 		int screenHeight = mWindowManager.getDefaultDisplay().getHeight();
 		wmParams.type = LayoutParams.TYPE_PHONE;
 		wmParams.format = PixelFormat.RGBA_8888;

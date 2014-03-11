@@ -84,6 +84,7 @@ public class WrongNewActivity extends Activity {
 		notifyWidgets();
 	}
 
+	@SuppressWarnings("deprecation")
 	private void notifyWidgets() {
 		if (call_code == WrongCallCode.BROWSE_CALL_NEW) {
 			headText.setText(this.getString(R.string.wrong_modify_title));

@@ -15,7 +15,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -213,6 +213,7 @@ public class FileUtility {
 	 * @return 文件读入流
 	 */
 
+	@SuppressWarnings({ "resource", "hiding", "finally" })
 	public InputStream readFileSDCard(File file) {
 		InputStream is = null;
 		try {
@@ -290,7 +291,6 @@ public class FileUtility {
 	 * 
 	 * @return -true照片存储成功 -false照片存储失败
 	 */
-	@SuppressWarnings("static-access")
 	public boolean savePhoto(Bitmap bitmap, String name) {
 		/**
 		 * 根据当前系统时间生成照片名称
@@ -485,6 +485,7 @@ public class FileUtility {
 		return b;
 	}
 
+	@SuppressLint("DefaultLocale")
 	public boolean isAudioFile(String name) {
 		boolean b = false;
 		String end = name.substring(name.lastIndexOf(".") + 1, name.length())
@@ -495,6 +496,7 @@ public class FileUtility {
 		return b;
 	}
 
+	@SuppressLint("DefaultLocale")
 	public boolean isTextFile(String name) {
 		boolean b = false;
 		String end = name.substring(name.lastIndexOf(".") + 1, name.length())

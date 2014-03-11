@@ -9,15 +9,9 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.MediaStore.Audio.Media;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import app.main.R;
 import app.main.ui.media.RecorderActivity;
 import app.main.ui.media.VideoActivity;
@@ -31,8 +25,6 @@ import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
 public class KnowledgeChooseActivity extends Activity {
-	private final static int RESULT_CAPTURE_VIDEO = 0;
-	private final static int RESULT_CAPTURE_RECORDER = 1;
 
 	private Button learnBtn;
 	private Button wrongBtn;
@@ -239,93 +231,6 @@ public class KnowledgeChooseActivity extends Activity {
 			}
 		});
 		builder.create().show();
-	}
-
-	private void requestVideo() {
-		Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-		startActivityForResult(intent, RESULT_CAPTURE_VIDEO);
-	}
-
-	private void requestRecoder() {
-		Intent intent = new Intent(Media.RECORD_SOUND_ACTION);
-		startActivityForResult(intent, RESULT_CAPTURE_RECORDER);
-	}
-
-	private void showVideo(String path) {
-
-		Uri uri = Uri.parse(path);
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setDataAndType(uri, "video/mp4");
-		startActivity(intent);
-	}
-
-	private void showRecoder(String path) {
-		Uri uri = Uri.parse(path);
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setDataAndType(uri, "audio/mp3");
-		startActivity(intent);
-	}
-
-	private void saveVideo(String path) {
-		fileModule.reset();
-		fileModule.createDirectory(sub);
-		fileModule.createDirectory(item);
-		fileModule.createDirectory(subs[2]);
-		fileModule.saveText(path, getString(R.string.file_media_video));
-	}
-
-	private void saveRecoder(String path) {
-		fileModule.reset();
-		fileModule.createDirectory(sub);
-		fileModule.createDirectory(item);
-		fileModule.createDirectory(subs[2]);
-		fileModule.saveText(path, getString(R.string.file_media_recorder));
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		try {
-			if (requestCode == RESULT_CAPTURE_VIDEO) {
-				if (resultCode == Activity.RESULT_OK) {
-					String path = data.getData().toString();
-					Toast toast = Toast.makeText(this, "视频已保存",
-							Toast.LENGTH_LONG);
-					toast.setGravity(Gravity.BOTTOM, 0, 0);
-					toast.show();
-					saveVideo(path);
-				} else {
-					Toast toast = Toast.makeText(this, "没录上。。。。",
-							Toast.LENGTH_LONG);
-					toast.setGravity(Gravity.BOTTOM, 0, 0);
-					toast.show();
-				}
-			}
-			if (requestCode == RESULT_CAPTURE_RECORDER) {
-				if (resultCode == Activity.RESULT_OK) {
-					String path = data.getData().toString();
-					Toast toast = Toast.makeText(this, "音频已保存",
-							Toast.LENGTH_LONG);
-					toast.setGravity(Gravity.BOTTOM, 0, 0);
-					toast.show();
-					saveRecoder(path);
-				} else {
-
-					Toast toast = Toast.makeText(this, "没录上。。。。",
-							Toast.LENGTH_LONG);
-					toast.setGravity(Gravity.BOTTOM, 0, 0);
-					toast.show();
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
-
-		return super.onTouchEvent(event);
 	}
 
 }

@@ -1,6 +1,5 @@
 package app.main.ui.media;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +25,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import app.main.R;
-import app.main.ui.core.SubjectsActivity;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
 
@@ -209,6 +207,7 @@ public class VideoActivity extends Activity {
 	private void saveVideo(final String path) {
 
 		final EditText edit = new EditText(VideoActivity.this);
+		@SuppressWarnings("unused")
 		AlertDialog otherDialog = new AlertDialog.Builder(VideoActivity.this)
 				.setTitle("Ç×£¬¸øÂ¼ÏñÃüÃû°É")
 				.setIcon(android.R.drawable.ic_dialog_info)
