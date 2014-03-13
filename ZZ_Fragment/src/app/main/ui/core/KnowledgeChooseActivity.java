@@ -198,39 +198,49 @@ public class KnowledgeChooseActivity extends Activity {
 		fileModule.createDirectory(sub);
 		fileModule.createDirectory(item);
 		fileModule.createDirectory(detail);
-		AlertDialog.Builder builder = new Builder(KnowledgeChooseActivity.this);
-		builder.setMessage("Ç×£¬ÇëÑ¡ÔñÂ¼Ïñ»¹ÊÇÂ¼Òô");
-		builder.setTitle("ÌáÊ¾");
-		builder.setPositiveButton("Â¼Ïñ", new OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(KnowledgeChooseActivity.this,
-						VideoActivity.class);
-				Bundle bundle = new Bundle();
-				bundle.putString("sub", sub);
-				bundle.putString("item", item);
-				bundle.putString("detail", detail);
-				bundle.putString("type", type_video);
-				intent.putExtras(bundle);
-				KnowledgeChooseActivity.this.startActivity(intent);
-				dialog.dismiss();
-			}
-
-		});
-		builder.setNegativeButton("Â¼Òô", new OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(KnowledgeChooseActivity.this,
-						RecorderActivity.class);
-				Bundle bundle = new Bundle();
-				bundle.putString("sub", sub);
-				bundle.putString("item", item);
-				bundle.putString("detail", detail);
-				bundle.putString("type", type_recorder);
-				intent.putExtras(bundle);
-				KnowledgeChooseActivity.this.startActivity(intent);
-				dialog.dismiss();
-			}
-		});
-		builder.create().show();
+		Intent intent = new Intent(KnowledgeChooseActivity.this,
+				VideoActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("sub", sub);
+		bundle.putString("item", item);
+		bundle.putString("detail", detail);
+		bundle.putString("type", type_video);
+		intent.putExtras(bundle);
+		KnowledgeChooseActivity.this.startActivity(intent);
+		// AlertDialog.Builder builder = new
+		// Builder(KnowledgeChooseActivity.this);
+		// builder.setMessage("Ç×£¬ÇëÑ¡ÔñÂ¼Ïñ»¹ÊÇÂ¼Òô");
+		// builder.setTitle("ÌáÊ¾");
+		// builder.setPositiveButton("Â¼Ïñ", new OnClickListener() {
+		// public void onClick(DialogInterface dialog, int which) {
+		// Intent intent = new Intent(KnowledgeChooseActivity.this,
+		// VideoActivity.class);
+		// Bundle bundle = new Bundle();
+		// bundle.putString("sub", sub);
+		// bundle.putString("item", item);
+		// bundle.putString("detail", detail);
+		// bundle.putString("type", type_video);
+		// intent.putExtras(bundle);
+		// KnowledgeChooseActivity.this.startActivity(intent);
+		// dialog.dismiss();
+		// }
+		//
+		// });
+		// builder.setNegativeButton("Â¼Òô", new OnClickListener() {
+		// public void onClick(DialogInterface dialog, int which) {
+		// Intent intent = new Intent(KnowledgeChooseActivity.this,
+		// RecorderActivity.class);
+		// Bundle bundle = new Bundle();
+		// bundle.putString("sub", sub);
+		// bundle.putString("item", item);
+		// bundle.putString("detail", detail);
+		// bundle.putString("type", type_recorder);
+		// intent.putExtras(bundle);
+		// KnowledgeChooseActivity.this.startActivity(intent);
+		// dialog.dismiss();
+		// }
+		// });
+		// builder.create().show();
 	}
 
 }
