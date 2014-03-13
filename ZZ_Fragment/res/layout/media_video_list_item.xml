@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="8sp"
-                android:src="@drawable/icon_wrong" />
+                android:src="@drawable/icon_media" />
 
             <TextView
                 android:id="@+id/media_video_item_title"
