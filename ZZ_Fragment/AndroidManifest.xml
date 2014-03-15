@@ -79,7 +79,12 @@
             android:screenOrientation="behind"
             android:theme="@style/Common_Theme" >
         </activity>
-           <activity
+        <activity
+            android:name="app.main.ui.wrong.WrongViewActivity"
+            android:screenOrientation="behind"
+            android:theme="@style/Common_Theme" >
+        </activity>
+        <activity
             android:name="app.main.ui.media.VideoActivity"
             android:screenOrientation="behind"
             android:theme="@style/Common_Theme" >
@@ -94,7 +99,6 @@
             android:screenOrientation="behind"
             android:theme="@style/Help_not_full_Theme" >
         </activity>
-     
         <activity
             android:name="app.main.ui.help.AuthorActivity"
             android:screenOrientation="behind"

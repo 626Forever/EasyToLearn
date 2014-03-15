@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/panel_background"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_frame" >
+
+    <LinearLayout
+        android:id="@+id/wrong_image_browse_head"
+        android:layout_width="fill_parent"
+        android:layout_height="55sp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_header"
+        android:orientation="horizontal"
+        android:paddingBottom="0sp"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingTop="0sp" >
+
+        <TextView
+            android:id="@+id/wrong_image_browse_head_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.4"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="浏览图片"
+            android:textAppearance="@style/header_title" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/wrong_browse_head"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10sp" >
+
+        <ImageView
+            android:id="@+id/wrong_image_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="matrix" />
+    </LinearLayout>
+
+</RelativeLayout>

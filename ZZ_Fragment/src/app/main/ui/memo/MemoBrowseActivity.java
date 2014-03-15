@@ -81,6 +81,15 @@ public class MemoBrowseActivity extends Activity {
 				bundle.putString("title", title);
 				bundle.putString("content", content);
 				intent.putExtras(bundle);
+				fileModule.reset();
+				fileModule.createDirectory(sub);
+				fileModule.createDirectory(item);
+				fileModule.createDirectory(detail);
+				ArrayList<String> dirs = fileModule
+						.getSubFolder();
+				for (int i = 0; i < dirs.size(); i++) {
+					fileModule.deleteFolder(dirs.get(i));
+				}
 				MemoBrowseActivity.this.startActivity(intent);
 				MemoBrowseActivity.this.finish();
 
@@ -107,7 +116,7 @@ public class MemoBrowseActivity extends Activity {
 								ArrayList<String> dirs = fileModule
 										.getSubFolder();
 								for (int i = 0; i < dirs.size(); i++) {
-									fileModule.deleteFile(dirs.get(i));
+									fileModule.deleteFolder(dirs.get(i));
 								}
 								Toast.makeText(MemoBrowseActivity.this, "È«É¾¹âÁË",
 										Toast.LENGTH_SHORT).show();

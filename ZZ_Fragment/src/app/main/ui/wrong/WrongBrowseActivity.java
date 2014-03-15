@@ -178,9 +178,9 @@ public class WrongBrowseActivity extends Activity {
 				// TODO Auto-generated method stub
 				AlertDialog.Builder builder = new Builder(
 						WrongBrowseActivity.this);
-				builder.setMessage("要删除您的错题吗?");
-				builder.setTitle("提示");
-				builder.setPositiveButton("确定",
+				builder.setMessage("瑕佸垹闄ゆ偍鐨勯敊棰樺悧?");
+				builder.setTitle("鎻愮ず");
+				builder.setPositiveButton("纭畾",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -188,12 +188,12 @@ public class WrongBrowseActivity extends Activity {
 								// TODO Auto-generated method stub
 								delete();
 								Toast.makeText(WrongBrowseActivity.this,
-										"全删光了", Toast.LENGTH_SHORT).show();
+										"鍏ㄥ垹鍏変簡", Toast.LENGTH_SHORT).show();
 								dialog.dismiss();
 								WrongBrowseActivity.this.finish();
 							}
 						});
-				builder.setNegativeButton("取消",
+				builder.setNegativeButton("鍙栨秷",
 						new DialogInterface.OnClickListener() {
 
 							public void onClick(DialogInterface dialog,
@@ -222,6 +222,38 @@ public class WrongBrowseActivity extends Activity {
 				misLayout.setVisibility(View.INVISIBLE);
 				ansLayout.setVisibility(View.VISIBLE);
 				noteLayout.setVisibility(View.INVISIBLE);
+			}
+		});
+		misImg.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(WrongBrowseActivity.this,
+						WrongViewActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("sub", sub);
+				bundle.putString("item", item);
+				bundle.putString("detail", detail);
+				bundle.putString("name", name);
+				bundle.putString("file_name", MIS_BITMAP_NAME);
+				intent.putExtras(bundle);
+				WrongBrowseActivity.this.startActivity(intent);
+			}
+		});
+		ansImg.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(WrongBrowseActivity.this,
+						WrongViewActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("sub", sub);
+				bundle.putString("item", item);
+				bundle.putString("detail", detail);
+				bundle.putString("name", name);
+				bundle.putString("file_name", ANS_BITMAP_NAME);
+				intent.putExtras(bundle);
+				WrongBrowseActivity.this.startActivity(intent);
 			}
 		});
 		noteBtn.setOnClickListener(new OnClickListener() {

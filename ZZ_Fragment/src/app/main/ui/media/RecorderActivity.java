@@ -123,9 +123,9 @@ public class RecorderActivity extends Activity {
 
 							public void onClick(DialogInterface dialog,
 									int which) {
-								// TODO Auto-generated method stub
 								removeItem(loc);
 							}
+
 						});
 				builder.setNegativeButton("È¡Ïû",
 						new DialogInterface.OnClickListener() {
