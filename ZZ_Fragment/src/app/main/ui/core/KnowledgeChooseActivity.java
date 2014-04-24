@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import app.main.R;
-import app.main.ui.media.RecorderActivity;
 import app.main.ui.media.VideoActivity;
 import app.main.ui.memo.MemoBrowseActivity;
 import app.main.ui.memo.MemoCallCode;
@@ -34,8 +36,13 @@ public class KnowledgeChooseActivity extends Activity {
 	private String sub;
 	private String item;
 	private String type_video;
-	private String type_recorder;
 	private FileUtility fileModule;
+	protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			finish();
+		}
+	};
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,13 +62,29 @@ public class KnowledgeChooseActivity extends Activity {
 		setListener();
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		// 在当前的activity中注册广播
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("ExitApp");
+		this.registerReceiver(this.broadcastReceiver, filter);
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		this.unregisterReceiver(this.broadcastReceiver);
+	}
+
 	private void getDirs() {
 		Intent intent = getIntent();
 		Bundle bundle = intent.getExtras();
 		sub = bundle.getString("sub");
 		item = bundle.getString("item");
 		type_video = getString(R.string.file_media_video);
-		type_recorder = getString(R.string.file_media_recorder);
+		getString(R.string.file_media_recorder);
 	}
 
 	private void initWidgets() {

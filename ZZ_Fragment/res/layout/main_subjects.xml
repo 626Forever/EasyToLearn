@@ -29,7 +29,9 @@
             android:paddingTop="8sp"
             android:text="@string/button_back" >
         </Button>
-
+        
+		
+        
         <TextView
             android:id="@+id/main_subjects_head_text"
             android:layout_width="wrap_content"
@@ -68,4 +70,6 @@
         android:listSelector="@color/selector_list_item" >
     </ListView>
 
+    
+     
 </LinearLayout>

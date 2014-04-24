@@ -11,7 +11,7 @@ import android.widget.TextView;
 import app.main.R;
 
 public class AuthorActivity extends Activity {
-	TextView infoText;
+	private TextView infoText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

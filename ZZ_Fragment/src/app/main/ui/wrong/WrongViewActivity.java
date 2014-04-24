@@ -3,27 +3,20 @@ package app.main.ui.wrong;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import app.main.R;
 import app.main.util.FileUtility;
 import app.main.util.StringUtility;
@@ -33,8 +26,6 @@ public class WrongViewActivity extends Activity {
 	public static String ANS_BITMAP_NAME;
 	private int screenWidth;
 	private int screenHeight;
-	private int view_type;
-
 	private String sub;
 	private String item;
 	private String detail;
@@ -47,6 +38,12 @@ public class WrongViewActivity extends Activity {
 	private Matrix savedMatrix;
 
 	private FileUtility fileModule;
+	protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			finish();
+		}
+	};
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,7 +60,7 @@ public class WrongViewActivity extends Activity {
 		ANS_BITMAP_NAME = this.getString(R.string.file_wrong_ansBmp);
 
 		Intent intent = getIntent();
-		Bundle bundle = getIntent().getExtras();
+		Bundle bundle = intent.getExtras();
 		sub = bundle.getString("sub");
 		item = bundle.getString("item");
 		detail = bundle.getString("detail");
@@ -99,6 +96,22 @@ public class WrongViewActivity extends Activity {
 
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		// 在当前的activity中注册广播
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("ExitApp");
+		this.registerReceiver(this.broadcastReceiver, filter);
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		this.unregisterReceiver(this.broadcastReceiver);
+	}
+
 	class myTouchListener implements OnTouchListener {
 		private float now_dist;
 		private float last_dist;
@@ -128,6 +141,7 @@ public class WrongViewActivity extends Activity {
 					* scale / 2);
 		}
 
+		@SuppressWarnings("deprecation")
 		public boolean onTouch(View v, MotionEvent event) {
 			int action = event.getAction();
 			int point_num = event.getPointerCount();

@@ -12,6 +12,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -22,6 +23,7 @@ public class AlarmActivity extends Activity {
 	private Button setBtn;
 	private Button cancelBtn;
 	private Button backBtn;
+	private Button mainFrameBtn;
 	private TextView timeText;
 	private Calendar calendar;
 
@@ -38,6 +40,7 @@ public class AlarmActivity extends Activity {
 		setBtn = (Button) findViewById(R.id.main_alarm_set_btn);
 		cancelBtn = (Button) findViewById(R.id.main_alarm_cancel_btn);
 		backBtn = (Button) findViewById(R.id.main_alarm_back);
+		mainFrameBtn = (Button)findViewById(R.id.main_alarm_back_main_frame);
 		initText();
 		setListener();
 	}
@@ -71,7 +74,14 @@ public class AlarmActivity extends Activity {
 	}
 
 	private void setListener() {
-		setBtn.setOnClickListener(new View.OnClickListener() {
+		mainFrameBtn.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mainFrameBack();
+			}
+		});
+		setBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -114,7 +124,7 @@ public class AlarmActivity extends Activity {
 						}, mHour, mMinute, true).show();
 			}
 		});
-		cancelBtn.setOnClickListener(new View.OnClickListener() {
+		cancelBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -128,7 +138,7 @@ public class AlarmActivity extends Activity {
 				timeText.setText("ƒ÷÷”“—»°œ˚£°");
 			}
 		});
-		backBtn.setOnClickListener(new View.OnClickListener() {
+		backBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -145,7 +155,16 @@ public class AlarmActivity extends Activity {
 			s = "0" + s;
 		return s;
 	}
-
+	
+	 protected void mainFrameBack() {   
+		 Intent intentExit = new Intent();   
+		 intentExit.setAction("ExitApp");   
+		 this.sendBroadcast(intentExit);  
+		 Intent intentVis = new Intent(FloatCtlService.VIS_LAYOUT);
+			sendBroadcast(intentVis);
+		 finish();   
+	} 
+	 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			Intent intent = new Intent(FloatCtlService.VIS_LAYOUT);

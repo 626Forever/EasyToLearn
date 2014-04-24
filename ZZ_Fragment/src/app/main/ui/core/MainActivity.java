@@ -77,7 +77,6 @@ public class MainActivity extends Activity {
 		if (requestCode == START_SUBJECTS_ACTIVITY) {
 			if (resultCode == RESULT_OK) {
 				closeFloatWnd();
-				System.out.println("asd");
 			}
 		}
 	}

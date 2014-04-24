@@ -7,8 +7,11 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +39,13 @@ public class KnowledgeItemActivity extends Activity {
 	private String sub;
 	private String item;
 	private ArrayList<Map<String, Object>> listData;
-	FileUtility fileModule;
+	private FileUtility fileModule;
+	protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {   
+		@Override  
+		public void onReceive(Context context, Intent intent) {   
+			finish();   
+		}   
+	};  
 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -54,7 +63,22 @@ public class KnowledgeItemActivity extends Activity {
 		getData();
 		setListener();
 	}
-
+	
+	@Override  
+    public void onResume() {   
+        super.onResume();   
+        // 在当前的activity中注册广播   
+        IntentFilter filter = new IntentFilter();   
+        filter.addAction("ExitApp");   
+        this.registerReceiver(this.broadcastReceiver, filter);   
+    }   
+       
+    @Override  
+    protected void onDestroy() {   
+        // TODO Auto-generated method stub   
+        super.onDestroy();   
+        this.unregisterReceiver(this.broadcastReceiver);     
+    } 
 	private void initAdapter() {
 
 		String[] from = new String[] { "item_title" };

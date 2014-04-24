@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,7 +61,13 @@ public class WrongNewActivity extends Activity {
 
 	private File temp;
 	private FileUtility fileModule;
-
+	protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			finish();
+		}
+	};
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -82,6 +90,70 @@ public class WrongNewActivity extends Activity {
 		getDirsAndBmps();
 		setListener();
 		notifyWidgets();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		// 在当前的activity中注册广播
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("ExitApp");
+		this.registerReceiver(this.broadcastReceiver, filter);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case RESULT_CAPTURE_MIS_IMAGE:
+			if (resultCode == RESULT_OK) {
+				if (misBmp != null && !misBmp.isRecycled())
+					misBmp.recycle();
+				try {
+					FileInputStream fis = new FileInputStream(temp);
+					misBmp = BitmapFactory.decodeStream(fis);
+					temp.delete();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (OutOfMemoryError e) {
+					Toast.makeText(WrongNewActivity.this, "额，没拍成功。。",
+							Toast.LENGTH_SHORT).show();
+				}
+	
+				misImage.setImageBitmap(misBmp);
+			}
+			break;
+		case RESULT_CAPTURE_ANS_IMAGE:
+			if (resultCode == RESULT_OK) {
+				if (ansBmp != null && !ansBmp.isRecycled())
+					ansBmp.recycle();
+				try {
+					FileInputStream fis = new FileInputStream(temp);
+					ansBmp = BitmapFactory.decodeStream(fis);
+					temp.delete();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (OutOfMemoryError e) {
+					Toast.makeText(WrongNewActivity.this, "额，没拍成功。。",
+							Toast.LENGTH_SHORT).show();
+				}
+	
+				ansImage.setImageBitmap(ansBmp);
+			}
+			break;
+	
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		this.unregisterReceiver(this.broadcastReceiver);
+		if (misBmp != null && !misBmp.isRecycled())
+			misBmp.recycle();
+		if (ansBmp != null && !ansBmp.isRecycled())
+			ansBmp.recycle();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -230,66 +302,12 @@ public class WrongNewActivity extends Activity {
 		});
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) {
-		case RESULT_CAPTURE_MIS_IMAGE:
-			if (resultCode == RESULT_OK) {
-				if (misBmp != null && !misBmp.isRecycled())
-					misBmp.recycle();
-				try {
-					FileInputStream fis = new FileInputStream(temp);
-					misBmp = BitmapFactory.decodeStream(fis);
-					temp.delete();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (OutOfMemoryError e) {
-					Toast.makeText(WrongNewActivity.this, "额，没拍成功。。",
-							Toast.LENGTH_SHORT).show();
-				}
-
-				misImage.setImageBitmap(misBmp);
-			}
-			break;
-		case RESULT_CAPTURE_ANS_IMAGE:
-			if (resultCode == RESULT_OK) {
-				if (ansBmp != null && !ansBmp.isRecycled())
-					ansBmp.recycle();
-				try {
-					FileInputStream fis = new FileInputStream(temp);
-					ansBmp = BitmapFactory.decodeStream(fis);
-					temp.delete();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (OutOfMemoryError e) {
-					Toast.makeText(WrongNewActivity.this, "额，没拍成功。。",
-							Toast.LENGTH_SHORT).show();
-				}
-
-				ansImage.setImageBitmap(ansBmp);
-			}
-			break;
-
-		}
-	}
-
 	private void requestCamera(int requestCode) {
 		temp = new File(Environment.getExternalStorageDirectory()
 				+ File.separator + TEMP_BITMAP_NAME);
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(temp));
 		WrongNewActivity.this.startActivityForResult(intent, requestCode);
-	}
-
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		if (misBmp != null && !misBmp.isRecycled())
-			misBmp.recycle();
-		if (ansBmp != null && !ansBmp.isRecycled())
-			ansBmp.recycle();
 	}
 
 }
